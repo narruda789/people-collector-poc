@@ -6,6 +6,8 @@ const HELP = "help"
 
 const RESET = "reset"
 
+const EXAMINE = "examine"
+
 const GET = "get"
 
 const INVENTORY = "inventory"

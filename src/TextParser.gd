@@ -10,6 +10,10 @@ func parse(text):
 		return InstructionSet.NOT_FOUND
 
 	match command_words[0]:
+		'examine':
+			if (command_words.size() > 1):
+				target = command_words[1]
+				return InstructionSet.EXAMINE
 		'get':
 			if (command_words.size() > 1):
 				target = command_words[1]

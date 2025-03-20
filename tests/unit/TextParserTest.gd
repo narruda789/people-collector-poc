@@ -50,13 +50,19 @@ func test_object_commands_are_parsed_correctly():
 		var object = text_parser.get_target()
 		assert_eq(object , tests[test]['object'])
 
-# func test_examine_is_parsed_correctly():
-# 	var input = [
-# 		{
-# 			"command": "examine geranium",
-# 			"target": "geranium"
-# 		}
-# 	]
-# 	for input_option in input:
-# 		assert_eq(text_parser.parse(input_option.command), InstructionSet.EXAMINE)
-# 		assert_eq(text_parser.get_target(), input_option.target)
+func test_examine_is_parsed_correctly():
+	assert_eq(text_parser.parse("examine"), InstructionSet.NOT_FOUND)
+	
+	var input = [
+		{
+			"command": "examine geranium",
+			"expected_target": "geranium"
+		},
+		{
+			"command": "examine Father",
+			"expected_target": "Father"
+		}
+	]
+	for input_option in input:
+		assert_eq(text_parser.parse(input_option.command), InstructionSet.EXAMINE)
+		assert_eq(text_parser.get_target(), input_option.expected_target)

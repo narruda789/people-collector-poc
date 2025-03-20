@@ -50,6 +50,11 @@ func process_action(action, target = null):
 		currentArea = 'area1'
 		return render_area(areas[currentArea])
 
+	# EXAMINE
+	if action == InstructionSet.EXAMINE:
+		var instruction = ExamineInstruction.new()
+		return instruction.execute()
+
 	# GET
 	if action == InstructionSet.GET and target != null:
 		if target in areas[currentArea]['items'].keys():
