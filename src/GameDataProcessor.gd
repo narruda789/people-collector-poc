@@ -1,7 +1,5 @@
 class_name GameDataProcessor
 
-var InstructionSet = load("res://src/InstructionSet.gd")
-
 var rooms
 var currentRoom = null
 var inventory = {}
