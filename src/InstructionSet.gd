@@ -19,7 +19,3 @@ const EAST = "east"
 const WEST = "west"
 
 const GET = "get"
-
-const OPEN = "open"
-
-const CLOSE = "close"

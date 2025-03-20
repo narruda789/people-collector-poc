@@ -28,15 +28,9 @@ func parse(text):
 			return InstructionSet.LOOK
 		'help':
 			return InstructionSet.HELP
-		'help me':
-			return InstructionSet.HELP
 
 		'reset':
 			return InstructionSet.RESET
-		'quit':
-			return InstructionSet.QUIT
-		'exit':
-			return InstructionSet.QUIT
 
 	if text.begins_with('get '):
 		var regex = RegEx.new()
@@ -44,20 +38,6 @@ func parse(text):
 		var results = regex.search(text)
 		object = results.get_string('object')
 		return InstructionSet.GET
-
-	if text.begins_with('open '):
-		var regex = RegEx.new()
-		regex.compile("open\\s(?<object>.*(\\s.*)?)")
-		var results = regex.search(text)
-		object = results.get_string('object')
-		return InstructionSet.OPEN
-
-	if text.begins_with('close '):
-		var regex = RegEx.new()
-		regex.compile("close\\s(?<object>.*(\\s.*)?)")
-		var results = regex.search(text)
-		object = results.get_string('object')
-		return InstructionSet.CLOSE
 
 	return InstructionSet.NOT_FOUND
 

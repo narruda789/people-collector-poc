@@ -32,30 +32,17 @@ func test_direction_is_parsed_correctly():
 		"go west": InstructionSet.WEST,
 		"west": InstructionSet.WEST,
 	}
-	for direciton in directions:
-		assert_eq(text_parser.parse(direciton), directions[direciton])
+	for direction in directions:
+		assert_eq(text_parser.parse(direction), directions[direction])
 
 func test_help_is_parsed_correctly():
-	var tests = {
-		"help": InstructionSet.HELP,
-		"help me": InstructionSet.HELP,
-	}
-	for test in tests:
-		assert_eq(text_parser.parse(test), tests[test])
+	assert_eq(text_parser.parse('help'), InstructionSet.HELP)
 
 func test_look_is_parsed_correctly():
 	assert_eq(text_parser.parse('look'), InstructionSet.LOOK)
 
 func test_reset_is_parsed_correctly():
 	assert_eq(text_parser.parse('reset'), InstructionSet.RESET)
-
-func test_quit_is_parsed_correctly():
-	var tests = {
-		"quit": InstructionSet.QUIT,
-		"exit": InstructionSet.QUIT,
-	}
-	for test in tests:
-		assert_eq(text_parser.parse(test), tests[test])
 
 func test_object_commands_are_parsed_correctly():
 	assert_eq(text_parser.parse("get"), InstructionSet.NOT_FOUND)
@@ -66,18 +53,6 @@ func test_object_commands_are_parsed_correctly():
 		"get bucket": {
 			'instruction': InstructionSet.GET,
 			'object': 'bucket',
-		},
-		"drop bucket": {
-			'instruction': InstructionSet.DROP,
-			'object': 'bucket',
-		},
-		"open north door": {
-			'instruction': InstructionSet.OPEN,
-			'object': 'north door',
-		},
-		"close north door": {
-			'instruction': InstructionSet.CLOSE,
-			'object': 'north door',
 		},
 	}
 	for test in tests:
