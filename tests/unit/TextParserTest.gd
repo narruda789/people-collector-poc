@@ -44,6 +44,14 @@ func test_look_is_parsed_correctly():
 func test_reset_is_parsed_correctly():
 	assert_eq(text_parser.parse('reset'), InstructionSet.RESET)
 
+func test_inventory_is_parsed_correctly():
+	var input = [
+		"inventory",
+		"i",
+	]
+	for input_option in input:
+		assert_eq(text_parser.parse(input_option), InstructionSet.INVENTORY)
+
 func test_object_commands_are_parsed_correctly():
 	assert_eq(text_parser.parse("get"), InstructionSet.NOT_FOUND)
 	assert_eq(text_parser.parse("getbucket"), InstructionSet.NOT_FOUND)

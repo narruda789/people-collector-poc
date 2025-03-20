@@ -19,3 +19,5 @@ const EAST = "east"
 const WEST = "west"
 
 const GET = "get"
+
+const INVENTORY = "inventory"

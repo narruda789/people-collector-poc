@@ -24,6 +24,11 @@ func parse(text):
 		'west':
 			return InstructionSet.WEST
 
+		'inventory':
+			return InstructionSet.INVENTORY
+		'i':
+			return InstructionSet.INVENTORY
+
 		'look':
 			return InstructionSet.LOOK
 		'help':
