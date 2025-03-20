@@ -57,10 +57,12 @@ func process_action(action, object = null):
 
 	# GET
 	if action == InstructionSet.GET and object != null:
-		for item in rooms[currentRoom]['items']:
-			if rooms[currentRoom]['items'][item]['name'] == object:
-				Inventory.add(Item.new(rooms[currentRoom]['items'][item]['name']))
-				return 'You get the ' + object;
+		if object in rooms[currentRoom]['items'].keys():
+			var new_item = Item.new(rooms[currentRoom]['items'][object]['displayName'])
+			Inventory.add(new_item)
+			rooms[currentRoom]['items'].erase(object)
+			return 'You get the ' + new_item._name;
+
 		return 'There is no ' + object + "\n"
 
 	# INVENTORY
@@ -87,8 +89,7 @@ func render_room(room):
 
 	if room.has('items') == true:
 		for item in room['items']:
-			if inventory.has(item) == false:
-				renderedRoom += room['items'][item]['description'] + "\n"
+			renderedRoom += room['items'][item]['inRoom'] + "\n"
 
 	renderedRoom += "\nPossible exits are:\n"
 
