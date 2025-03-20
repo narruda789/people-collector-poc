@@ -52,7 +52,7 @@ func process_action(action, target = null):
 
 	# EXAMINE
 	if action == InstructionSet.EXAMINE:
-		var instruction = ExamineInstruction.new()
+		var instruction = ExamineInstruction.new(areas[currentArea], target)
 		return instruction.execute()
 
 	# GET
