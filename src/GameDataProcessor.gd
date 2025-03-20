@@ -1,11 +1,10 @@
 class_name GameDataProcessor
 
-var rooms
-var currentRoom = null
-var inventory = {}
+var areas
+var currentArea = null
 
 func _init():
-	rooms = loadJsonData("res://data/game1.json")
+	areas = loadJsonData("res://data/game1.json")
 	Inventory.clear()
 
 # Load the game data from the json file.
@@ -26,71 +25,53 @@ func loadJsonData(fileName):
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		assert(false, "JSON Parse Error")
 
-func process_action(action, object = null):
+func process_action(action, target = null):
+	# NOT FOUND
+	if action == InstructionSet.NOT_FOUND:
+		return "Can't do that!\n"
+
 	# HELP
 	if action == InstructionSet.HELP:
 		var helpText = ''
-		helpText += 'Instructions:' + "\n"
-		helpText += '- Use "look" around the room you are in.' + "\n"
-		helpText += '- Use "north", "south", "east", "west" to move in that direction.' + "\n"
-		helpText += '- Use "get <object>" pick up objects.' + "\n"
+		helpText += 'HELP:' + "\n"
+		helpText += '- Use "examine <item/area>" for more information.' + "\n"
+		helpText += '- Use "get <item>" pick up an item.' + "\n"
 		helpText += '- Use "reset" to start the game over.' + "\n"
 		return helpText
 
 	# RESET
 	if action == InstructionSet.RESET:
-		currentRoom = null
-		inventory = {}
-		rooms = loadJsonData("res://data/game1.json")
+		currentArea = null
+		areas = loadJsonData("res://data/game1.json")
 		return process_action(null)
 
-	# If the current room is empty then start with the initial room.
-	if currentRoom == null:
-		currentRoom = 'room1'
-		return render_room(rooms[currentRoom])
-
-	# LOOK
-	if action == InstructionSet.LOOK:
-		return render_room(rooms[currentRoom])
+	# If the current area is empty then start with the initial area.
+	if currentArea == null:
+		currentArea = 'area1'
+		return render_area(areas[currentArea])
 
 	# GET
-	if action == InstructionSet.GET and object != null:
-		if object in rooms[currentRoom]['items'].keys():
-			var new_item = Item.new(rooms[currentRoom]['items'][object]['displayName'])
+	if action == InstructionSet.GET and target != null:
+		if target in areas[currentArea]['items'].keys():
+			var new_item = Item.new(areas[currentArea]['items'][target]['displayName'])
 			Inventory.add(new_item)
-			rooms[currentRoom]['items'].erase(object)
+			areas[currentArea]['items'].erase(target)
 			return 'You get the ' + new_item._name;
 
-		return 'There is no ' + object + "\n"
+		return 'There is no ' + target + "\n"
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
 		var instruction = InventoryInstruction.new()
 		return instruction.execute()
 
-	# If we get to this point we have a direction of some kind.
-	# Is direction/action valid?
-	if rooms[currentRoom]['exits'].has(action) == false:
-		return 'I don\'t understand!' + "\n"
+# Render a given area, including the exits.
+func render_area(area):
+	var renderedArea = ''
+	renderedArea += area['intro'] + "\n"
 
-	# is a direction then change the state to the new room.
-	if rooms[currentRoom]['exits'][action].has('destination') == true:
-		currentRoom = rooms[currentRoom]['exits'][action]['destination']
+	if area.has('items') == true:
+		for item in area['items']:
+			renderedArea += area['items'][item]['inRoom'] + "\n"
 
-	# return the text of the new room
-	return render_room(rooms[currentRoom])
-
-# Render a given room, including the exits.
-func render_room(room):
-	var renderedRoom = ''
-	renderedRoom += room['intro'] + "\n"
-
-	if room.has('items') == true:
-		for item in room['items']:
-			renderedRoom += room['items'][item]['inRoom'] + "\n"
-
-	renderedRoom += "\nPossible exits are:\n"
-
-	for exit in room['exits']:
-		renderedRoom += "- " + room['exits'][exit]['description'] + "\n"
-	return renderedRoom
+	return renderedArea

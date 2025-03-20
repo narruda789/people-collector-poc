@@ -1,7 +1,5 @@
 extends GutTest
 
-var TextParser = load('res://src/TextParser.gd')
-var InstructionSet = load('res://src/InstructionSet.gd')
 var text_parser = null
 
 func before_each():
@@ -21,25 +19,8 @@ func test_random_text_produces_error():
 	for text in entered_text:
 		assert_eq(text_parser.parse(text), entered_text[text])
 
-func test_direction_is_parsed_correctly():
-	var directions = {
-		"go north": InstructionSet.NORTH,
-		"north": InstructionSet.NORTH,
-		"go south": InstructionSet.SOUTH,
-		"south": InstructionSet.SOUTH,
-		"go east": InstructionSet.EAST,
-		"east": InstructionSet.EAST,
-		"go west": InstructionSet.WEST,
-		"west": InstructionSet.WEST,
-	}
-	for direction in directions:
-		assert_eq(text_parser.parse(direction), directions[direction])
-
 func test_help_is_parsed_correctly():
 	assert_eq(text_parser.parse('help'), InstructionSet.HELP)
-
-func test_look_is_parsed_correctly():
-	assert_eq(text_parser.parse('look'), InstructionSet.LOOK)
 
 func test_reset_is_parsed_correctly():
 	assert_eq(text_parser.parse('reset'), InstructionSet.RESET)
@@ -66,5 +47,16 @@ func test_object_commands_are_parsed_correctly():
 	for test in tests:
 		var instruction = text_parser.parse(test)
 		assert_eq(instruction, tests[test]['instruction'])
-		var object = text_parser.get_object()
+		var object = text_parser.get_target()
 		assert_eq(object , tests[test]['object'])
+
+# func test_examine_is_parsed_correctly():
+# 	var input = [
+# 		{
+# 			"command": "examine geranium",
+# 			"target": "geranium"
+# 		}
+# 	]
+# 	for input_option in input:
+# 		assert_eq(text_parser.parse(input_option.command), InstructionSet.EXAMINE)
+# 		assert_eq(text_parser.get_target(), input_option.target)

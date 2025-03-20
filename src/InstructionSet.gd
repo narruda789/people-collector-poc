@@ -6,18 +6,6 @@ const HELP = "help"
 
 const RESET = "reset"
 
-const QUIT = "quit"
-
-const LOOK = "look"
-
-const NORTH = "north"
-
-const SOUTH = "south"
-
-const EAST = "east"
-
-const WEST = "west"
-
 const GET = "get"
 
 const INVENTORY = "inventory"
