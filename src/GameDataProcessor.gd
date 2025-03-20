@@ -8,6 +8,7 @@ var inventory = {}
 
 func _init():
 	rooms = loadJsonData("res://data/game1.json")
+	Inventory.clear()
 
 # Load the game data from the json file.
 func loadJsonData(fileName):
@@ -58,9 +59,14 @@ func process_action(action, object = null):
 	if action == InstructionSet.GET and object != null:
 		for item in rooms[currentRoom]['items']:
 			if rooms[currentRoom]['items'][item]['name'] == object:
-				inventory[item] = rooms[currentRoom]['items'][item]
+				Inventory.add(Item.new(rooms[currentRoom]['items'][item]['name']))
 				return 'You get the ' + object;
 		return 'There is no ' + object + "\n"
+
+	# INVENTORY
+	if action == InstructionSet.INVENTORY:
+		var instruction = InventoryInstruction.new()
+		return instruction.execute()
 
 	# If we get to this point we have a direction of some kind.
 	# Is direction/action valid?
