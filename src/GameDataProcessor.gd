@@ -1,5 +1,6 @@
 class_name GameDataProcessor
 
+# todo: make areas a singleton rather than passing chunks of it around
 var areas
 var currentArea = null
 
@@ -66,18 +67,9 @@ func process_action(action, target = null):
 	# todo: refactor GET to TAKE
 
 	# GET
-	# if action == InstructionSet.GET:
-	# 	instruction = TakeInstruction.new()
-	# 	return instruction.execute()
-
-	if action == InstructionSet.GET and target != null:
-		if target in currentArea["items"].keys():
-			var new_item = Item.new(currentArea["items"][target]["displayName"])
-			Inventory.add(new_item)
-			currentArea["items"].erase(target)
-			return "You get the " + new_item._name;
-
-		return "Can't pick that up."
+	if action == InstructionSet.GET:
+		instruction = TakeInstruction.new(currentArea, target)
+		return instruction.execute()
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
