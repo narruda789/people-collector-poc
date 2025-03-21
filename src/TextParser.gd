@@ -1,35 +1,35 @@
 class_name TextParser
 
-var target = null
+var _target = null
 
 # Parse a given input string into an instruction.
 func parse(text):
-	var command_words = text.split(" ", false)
+	var first_word_break = text.find(" ")
+	var command_word = text.substr(0, first_word_break)
+	# todo: test if user enters leading space(s)
 
-	if (command_words.size() == 0):
-		return InstructionSet.NOT_FOUND
-
-	match command_words[0]:
-		'examine':
-			if (command_words.size() > 1):
-				target = command_words[1]
-				return InstructionSet.EXAMINE
-		'get':
-			if (command_words.size() > 1):
-				target = command_words[1]
-				return InstructionSet.GET
-		'inventory':
-			return InstructionSet.INVENTORY
-		'i':
+	match command_word:
+		"examine":
+			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.EXAMINE)
+		"get":
+			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.GET)
+		"inventory", "i":
 			return InstructionSet.INVENTORY
 
-		'help':
+		"help":
 			return InstructionSet.HELP
 
-		'reset':
+		"reset":
 			return InstructionSet.RESET
 
 	return InstructionSet.NOT_FOUND
 
 func get_target():
-	return target
+	return _target
+
+func _set_target_and_return_instruction(text, first_word_break, instruction):
+	if first_word_break == -1:
+		# transitive command with no target
+		return InstructionSet.NOT_FOUND
+	_target = text.substr(first_word_break, -1).strip_edges()
+	return instruction

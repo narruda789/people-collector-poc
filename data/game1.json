@@ -1,16 +1,16 @@
 {
 	"area1": {
-		"intro" : "It's finally here!\n\nToday's the day Alya sets off on her big adventure!\n\nShe wakes up in her bedroom. It's the same as always: the south-facing window, the tidy desk, the elaborate dollhouse in the corner.\n\nBut today, something is different. Alya can't put her finger on it, but the familiar comforts of her room seem somehow livelier than usual.\n\nIt's a great day for adventure!\n\nTUTORIAL: Use 'examine <item>' to explore Alya's room",
-		"description" : "Everything in Alya's room is the same as always: the south-facing window, the tidy desk, the elaborate dollhouse in the corner.",
+		"intro" : "It's finally here!\n\nToday's the day Alya sets off on her big adventure!\n\nShe wakes up in her bedroom. It's the same as always: the south-facing window, the tidy desk, the elaborate doll house in the corner.\n\nBut today, something is different. Alya can't put her finger on it, but the familiar comforts of her room seem somehow livelier than usual.\n\nIt's a great day for adventure!\n\nTUTORIAL: Use 'examine <item>' to explore Alya's room",
+		"description" : "Everything in Alya's room is the same as always: the south-facing window, the tidy writing desk, the elaborate doll house in the corner.",
 		"poi" : {
 			"window" : {
-				"description" : "The morning sunlight warms Alya's face as she peers out the window. She can see her family's apple orchard below—rows of trees stretching all the way to the surrounding forest. The thought of apples makes her stomach rumble. Time for breakfast!"
+				"description" : "The morning sunlight warms Alya's face as she peers out the window. She can see her family's apple orchard below... rows of budding trees stretching all the way to the surrounding forest. The thought of apples makes Alya's stomach rumble. Time for breakfast!"
 			},
-			"dollhouse" : {
-				"description" : "Alya runs her fingers along the little pine-wood shingles of the dollhouse. For years, her sister has been saying she would grow out of it, but Alya never did. She has always loved placing a new piece of miniature furniture in one of the house's many rooms for her dolls to enjoy."
+			"doll house" : {
+				"description" : "Alya runs her fingers along the tiny pine-wood shingles of the doll house. For years, her sister has been saying she would grow out of it, but Alya never did. She has always loved placing a new piece of miniature furniture in one of the house's many rooms for her dolls to enjoy."
 			},
 			"desk" : {
-				"description" : "There is a stack of letters on the polished surface of Alya's writing desk. They are all from Henry. Her last letter must have reached him a week ago... She expects to hear back from him any day now!"
+				"description" : "There is a stack of letters on the polished surface of Alya's writing desk. They are all from Henry. Her last letter must have reached him a week ago. She expects to hear back from him any day now!"
 			}
 		}
 	}

@@ -32,8 +32,8 @@ func process_action(action, target = null):
 
 	# HELP
 	if action == InstructionSet.HELP:
-		var helpText = ''
-		helpText += 'HELP:' + "\n"
+		var helpText = ""
+		helpText += "HELP:" + "\n"
 		helpText += '- Use "examine <item/area>" for more information.' + "\n"
 		helpText += '- Use "get <item>" pick up an item.' + "\n"
 		helpText += '- Use "reset" to start the game over.' + "\n"
@@ -47,7 +47,7 @@ func process_action(action, target = null):
 
 	# If the current area is empty then start with the initial area.
 	if currentArea == null:
-		currentArea = 'area1'
+		currentArea = "area1"
 		return render_area(areas[currentArea])
 
 	# EXAMINE
@@ -57,13 +57,13 @@ func process_action(action, target = null):
 
 	# GET
 	if action == InstructionSet.GET and target != null:
-		if target in areas[currentArea]['items'].keys():
-			var new_item = Item.new(areas[currentArea]['items'][target]['displayName'])
+		if target in areas[currentArea]["items"].keys():
+			var new_item = Item.new(areas[currentArea]["items"][target]["displayName"])
 			Inventory.add(new_item)
-			areas[currentArea]['items'].erase(target)
-			return 'You get the ' + new_item._name;
+			areas[currentArea]["items"].erase(target)
+			return "You get the " + new_item._name;
 
-		return 'There is no ' + target + "\n"
+		return "There is no " + target + "\n"
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
@@ -72,11 +72,11 @@ func process_action(action, target = null):
 
 # Render a given area, including the exits.
 func render_area(area):
-	var renderedArea = ''
-	renderedArea += area['intro'] + "\n"
+	var renderedArea = ""
+	renderedArea += area["intro"] + "\n"
 
-	if area.has('items') == true:
-		for item in area['items']:
-			renderedArea += area['items'][item]['inRoom'] + "\n"
+	if area.has("items") == true:
+		for item in area["items"]:
+			renderedArea += area["items"][item]["inRoom"] + "\n"
 
 	return renderedArea

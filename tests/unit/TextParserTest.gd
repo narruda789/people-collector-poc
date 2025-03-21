@@ -61,6 +61,10 @@ func test_examine_is_parsed_correctly():
 		{
 			"command": "examine Father",
 			"expected_target": "Father"
+		},
+		{
+			"command": "examine jump rope",
+			"expected_target": "jump rope"
 		}
 	]
 	for input_option in input:
