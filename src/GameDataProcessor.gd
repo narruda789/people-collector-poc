@@ -26,17 +26,24 @@ func loadJsonData(fileName):
 		assert(false, "JSON Parse Error")
 
 func process_action(action, target = null):
+	var instruction: Instruction = null
+
 	# NOT FOUND
 	if action == InstructionSet.NOT_FOUND:
 		return "Can't do that!"
 
 	# HELP
 	if action == InstructionSet.HELP:
+		# todo: is there a better way to do this concatenation...?
 		var helpText = ""
 		helpText += "HELP:" + ""
-		helpText += "\n - Use 'examine <item>' to explore your surroundings."
-		helpText += "\n - Use 'get <item>' to pick up an item."
-		helpText += "\n - Use 'reset' to start the game over."
+		helpText += "\n  examine <item> | Get more information about an item"
+		helpText += "\n  get <item>     | Pick up an item"
+		helpText += "\n  [i]nventory    | See all the items Alya is carrying"
+		helpText += "\n  "
+		helpText += "\n  reset          | Restart game from the beginning"
+		helpText += "\n  help           | Open this help menu"
+
 		return helpText
 
 	# RESET
@@ -52,12 +59,19 @@ func process_action(action, target = null):
 
 	# EXAMINE
 	if action == InstructionSet.EXAMINE:
-		var instruction = ExamineInstruction.new(currentArea, target)
+		instruction = ExamineInstruction.new(currentArea, target)
 		return instruction.execute()
 
 	# todo: handle case when item doesn't exist
 	#   (and refactor to its own instruction class!)
+
+	# todo: refactor GET to TAKE
+
 	# GET
+	# if action == InstructionSet.GET:
+	# 	instruction = TakeInstruction.new()
+	# 	return instruction.execute()
+
 	if action == InstructionSet.GET and target != null:
 		if target in currentArea["items"].keys():
 			var new_item = Item.new(currentArea["items"][target]["displayName"])
@@ -69,8 +83,10 @@ func process_action(action, target = null):
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
-		var instruction = InventoryInstruction.new()
+		instruction = InventoryInstruction.new()
 		return instruction.execute()
+
+	# todo: after each instruction executes, print area description!
 
 # Render a given area, including the exits.
 func render_area(area):

@@ -1,4 +1,4 @@
-class_name ExamineInstruction
+class_name ExamineInstruction extends Instruction
 
 var _area = null
 var _target = null
