@@ -25,3 +25,7 @@ func test_examine_icebox():
 func test_examine_hot_dog():
 	var instruction = ExamineInstruction.new(mock_area, "hot dog")
 	assert_eq(instruction.execute(), "How long has this been in here...?")
+
+func test_examine_non_existent_item():
+	var instruction = ExamineInstruction.new(mock_area, "modern potato chips")
+	assert_eq(instruction.execute(), "Can't examine that.")

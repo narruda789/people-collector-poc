@@ -8,13 +8,14 @@ func before_each():
 func test_random_text_produces_error():
 	var entered_text = {
 		"": InstructionSet.NOT_FOUND,
-		" ":  InstructionSet.NOT_FOUND,
-		"wibble":  InstructionSet.NOT_FOUND,
-		"notrhitng":  InstructionSet.NOT_FOUND,
-		"wewst":  InstructionSet.NOT_FOUND,
-		"southgsd":  InstructionSet.NOT_FOUND,
-		"estesin":  InstructionSet.NOT_FOUND,
-		"<script>":  InstructionSet.NOT_FOUND,
+		" ": InstructionSet.NOT_FOUND,
+		" get": InstructionSet.NOT_FOUND,
+		"wibble": InstructionSet.NOT_FOUND,
+		"notrhitng": InstructionSet.NOT_FOUND,
+		"wewst": InstructionSet.NOT_FOUND,
+		"southgsd": InstructionSet.NOT_FOUND,
+		"estesin": InstructionSet.NOT_FOUND,
+		"<script>": InstructionSet.NOT_FOUND,
 	}
 	for text in entered_text:
 		assert_eq(text_parser.parse(text), entered_text[text])

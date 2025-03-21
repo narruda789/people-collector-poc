@@ -6,7 +6,6 @@ var _target = null
 func parse(text):
 	var first_word_break = text.find(" ")
 	var command_word = text.substr(0, first_word_break)
-	# todo: test if user enters leading space(s)
 
 	match command_word:
 		"examine":
