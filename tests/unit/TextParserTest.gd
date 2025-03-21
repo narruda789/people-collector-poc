@@ -11,7 +11,7 @@ func test_random_text_produces_error():
 	var entered_text = {
 		"": InstructionSet.NOT_FOUND,
 		" ": InstructionSet.NOT_FOUND,
-		" get": InstructionSet.NOT_FOUND,
+		" take": InstructionSet.NOT_FOUND,
 		"wibble": InstructionSet.NOT_FOUND,
 		"notrhitng": InstructionSet.NOT_FOUND,
 		"wewst": InstructionSet.NOT_FOUND,
@@ -37,13 +37,13 @@ func test_inventory_is_parsed_correctly():
 		assert_eq(text_parser.parse(input_option), InstructionSet.INVENTORY)
 
 func test_object_commands_are_parsed_correctly():
-	assert_eq(text_parser.parse("get"), InstructionSet.NOT_FOUND)
-	assert_eq(text_parser.parse("getbucket"), InstructionSet.NOT_FOUND)
-	assert_eq(text_parser.parse("get-bucket"), InstructionSet.NOT_FOUND)
+	assert_eq(text_parser.parse("take"), InstructionSet.NOT_FOUND)
+	assert_eq(text_parser.parse("takebucket"), InstructionSet.NOT_FOUND)
+	assert_eq(text_parser.parse("take-bucket"), InstructionSet.NOT_FOUND)
 
 	var tests = {
-		"get bucket": {
-			'instruction': InstructionSet.GET,
+		"take bucket": {
+			'instruction': InstructionSet.TAKE,
 			'object': 'bucket',
 		},
 	}

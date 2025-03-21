@@ -8,6 +8,6 @@ const RESET = "reset"
 
 const EXAMINE = "examine"
 
-const GET = "get"
+const TAKE = "take"
 
 const INVENTORY = "inventory"
