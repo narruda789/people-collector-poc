@@ -1,19 +1,22 @@
 extends Node
 
-var items = []
+var _items = []
 
 func render():
 	var to_render = "INVENTORY:"
-	if items.is_empty():
+	if _items.is_empty():
 		return to_render + "\n (!) You aren't carrying anything."    
 
-	for item in items:
+	for item in _items:
 		to_render += "\n" + item._name
 
 	return to_render
 
 func add(item: Item):
-	items.append(item)
+	_items.append(item)
 
 func clear():
-	items = []
+	_items = []
+
+func get_as_list():
+	return _items
