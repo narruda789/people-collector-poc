@@ -9,7 +9,7 @@ func _ready():
 	gameText = get_parent().get_parent().get_node("GameText")
 	text_parser = TextParser.new()
 	game_data_processor = GameDataProcessor.new()
-	gameText.append_text(game_data_processor.process_action('') + "\n")
+	gameText.append_text(game_data_processor.process_action('') + "\n\n")
 	self.grab_focus()
 
 func _on_text_submitted(new_text):
@@ -26,7 +26,7 @@ func _on_text_submitted(new_text):
 	var output_text = ''
 	output_text += " > " + new_text + "\n\n"
 	output_text += game_data_processor.process_action(instruction, text_parser.get_target())
-	output_text += "\n"
+	output_text += "\n\n"
 
 	# pass output to the game text area
 	gameText.append_text(output_text)

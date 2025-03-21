@@ -28,15 +28,15 @@ func loadJsonData(fileName):
 func process_action(action, target = null):
 	# NOT FOUND
 	if action == InstructionSet.NOT_FOUND:
-		return "Can't do that!\n"
+		return "Can't do that!"
 
 	# HELP
 	if action == InstructionSet.HELP:
 		var helpText = ""
-		helpText += "HELP:" + "\n"
-		helpText += '- Use "examine <item/area>" for more information.' + "\n"
-		helpText += '- Use "get <item>" pick up an item.' + "\n"
-		helpText += '- Use "reset" to start the game over.' + "\n"
+		helpText += "HELP:" + ""
+		helpText += "\n - Use 'examine <item>' to explore your surroundings."
+		helpText += "\n - Use 'get <item>' to pick up an item."
+		helpText += "\n - Use 'reset' to start the game over."
 		return helpText
 
 	# RESET
@@ -55,6 +55,8 @@ func process_action(action, target = null):
 		var instruction = ExamineInstruction.new(areas[currentArea], target)
 		return instruction.execute()
 
+	# todo: handle case when item doesn't exist
+	#   (and refactor to its own instruction class!)
 	# GET
 	if action == InstructionSet.GET and target != null:
 		if target in areas[currentArea]["items"].keys():
@@ -63,7 +65,7 @@ func process_action(action, target = null):
 			areas[currentArea]["items"].erase(target)
 			return "You get the " + new_item._name;
 
-		return "There is no " + target + "\n"
+		return "Can't pick that up."
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
@@ -72,11 +74,4 @@ func process_action(action, target = null):
 
 # Render a given area, including the exits.
 func render_area(area):
-	var renderedArea = ""
-	renderedArea += area["intro"] + "\n"
-
-	if area.has("items") == true:
-		for item in area["items"]:
-			renderedArea += area["items"][item]["inRoom"] + "\n"
-
-	return renderedArea
+	return area["intro"]
