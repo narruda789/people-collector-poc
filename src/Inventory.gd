@@ -8,7 +8,7 @@ func render():
 		return to_render + "\n (!) You aren't carrying anything."    
 
 	for item in _items:
-		to_render += "\n" + item._name
+		to_render += "\n  " + item._name
 
 	return to_render
 

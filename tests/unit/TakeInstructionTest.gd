@@ -51,12 +51,16 @@ func test_take_non_existent_item():
     var instruction = TakeInstruction.new(_mock_area, "orca whale")
     assert_eq(instruction.execute(), "Can't pick that up.")
 
+func test_no_items_in_area():
+    var instruction = TakeInstruction.new({"description" : "An empty room with nothing to pick up!"}, "baseball bat")
+    assert_eq(instruction.execute(), "Can't pick that up.")
+
 # todo: make sure it's actually permanently removed!
 func test_take_item_removes_it_from_area():
     var instruction = TakeInstruction.new(_mock_area, "hourglass")
     instruction.execute()
     _assert_inventory(1, ["hourglass"])
-    assert_does_not_have(_mock_area.items, "hourglass")
+    assert_does_not_have(_mock_area["items"], "hourglass")
 
 func _assert_inventory(expected_size: int = 0, expected_item_names: Array = []):
     var inventory_items = Inventory.get_as_list()

@@ -26,8 +26,7 @@ func loadJsonData(fileName):
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		assert(false, "JSON Parse Error")
 
-func process_action(action, target = null):
-	var instruction: Instruction = null
+func process_action(action, target = null, instruction: Instruction = null):
 
 	# NOT FOUND
 	if action == InstructionSet.NOT_FOUND:
@@ -58,7 +57,8 @@ func process_action(action, target = null):
 
 	# EXAMINE
 	if action == InstructionSet.EXAMINE:
-		instruction = ExamineInstruction.new(currentArea, target)
+		if instruction == null:
+			instruction = ExamineInstruction.new(currentArea, target)
 		return instruction.execute()
 
 	# todo: handle case when item doesn't exist
@@ -68,12 +68,14 @@ func process_action(action, target = null):
 
 	# GET
 	if action == InstructionSet.GET:
-		instruction = TakeInstruction.new(currentArea, target)
+		if instruction == null:
+			instruction = TakeInstruction.new(currentArea, target)
 		return instruction.execute()
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
-		instruction = InventoryInstruction.new()
+		if instruction == null:
+			instruction = InventoryInstruction.new()
 		return instruction.execute()
 
 	# todo: after each instruction executes, print area description!
