@@ -36,7 +36,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.HELP:
 		var helpText = "HELP:"
 		helpText += "\n  examine <item> | Get more information about an item"
-		helpText += "\n  get <item>     | Pick up an item"
+		helpText += "\n  take <item>     | Pick up an item"
 		helpText += "\n  [lb]i[rb]nventory    | See all the items Alya is carrying"
 		helpText += "\n  "
 		helpText += "\n  reset          | Restart game from the beginning"
@@ -64,10 +64,8 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# todo: handle case when item doesn't exist
 	#   (and refactor to its own instruction class!)
 
-	# todo: refactor GET to TAKE
-
-	# GET
-	if action == InstructionSet.GET:
+	# TAKE
+	if action == InstructionSet.TAKE:
 		if instruction == null:
 			instruction = TakeInstruction.new(currentArea, target)
 		return instruction.execute()

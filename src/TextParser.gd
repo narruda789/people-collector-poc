@@ -10,8 +10,8 @@ func parse(text):
 	match command_word:
 		"examine":
 			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.EXAMINE)
-		"get":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.GET)
+		"take":
+			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.TAKE)
 		"inventory", "i":
 			return InstructionSet.INVENTORY
 

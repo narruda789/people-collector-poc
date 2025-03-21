@@ -13,7 +13,7 @@ func test_help_instruction_says_help():
 func test_help_instruction_contains_every_instruction():
     var message = _processor.process_action(InstructionSet.HELP)
     assert_string_contains(message, "examine")
-    assert_string_contains(message, "get")
+    assert_string_contains(message, "take")
     assert_string_contains(message, "reset")
     assert_string_contains(message, "help")
     assert_string_contains(message, "[lb]i[rb]nventory")
