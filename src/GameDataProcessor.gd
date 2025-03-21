@@ -34,9 +34,7 @@ func process_action(action, target = null):
 
 	# HELP
 	if action == InstructionSet.HELP:
-		# todo: is there a better way to do this concatenation...?
-		var helpText = ""
-		helpText += "HELP:" + ""
+		var helpText = "HELP:"
 		helpText += "\n  examine <item> | Get more information about an item"
 		helpText += "\n  get <item>     | Pick up an item"
 		helpText += "\n  [lb]i[rb]nventory    | See all the items Alya is carrying"
