@@ -14,6 +14,8 @@ var mock_area = {
 	}
 }
 
+# todo: be able to examine item in inventory
+
 func test_examine_cupboard():
 	var instruction = ExamineInstruction.new(mock_area, "cupboard")
 	assert_eq(instruction.execute(), "It's a dusty old cupboard.")

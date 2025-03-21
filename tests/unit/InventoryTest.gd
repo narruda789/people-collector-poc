@@ -3,6 +3,8 @@ extends GutTest
 func before_each():
     Inventory.clear()
 
+# todo: inventory should probably be stored as a dictionary...
+
 func test_has_nothing():
     assert_eq(Inventory.render(), "INVENTORY:\n (!) You aren't carrying anything.")
 
