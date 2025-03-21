@@ -1,9 +1,6 @@
 extends GutTest
 
-var _processor: GameDataProcessor = null
-
-func before_each():
-    _processor = GameDataProcessor.new()
+var _processor = GameDataProcessor.new()
 
 func test_not_found_instruction():
     var message = _processor.process_action(InstructionSet.NOT_FOUND)
@@ -19,4 +16,4 @@ func test_help_instruction_contains_every_instruction():
     assert_string_contains(message, "get")
     assert_string_contains(message, "reset")
     assert_string_contains(message, "help")
-    assert_string_contains(message, "[i]nventory")
+    assert_string_contains(message, "[lb]i[rb]nventory")
