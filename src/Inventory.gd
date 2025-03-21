@@ -3,9 +3,9 @@ extends Node
 var items = []
 
 func render():
-	var to_render = "INVENTORY:\n"
+	var to_render = "INVENTORY:"
 	if items.is_empty():
-		return to_render + " (!) You aren't carrying anything."    
+		return to_render + "\n (!) You aren't carrying anything."    
 
 	for item in items:
 		to_render += "\n" + item._name

@@ -4,21 +4,21 @@ func before_each():
     Inventory.clear()
 
 func test_has_nothing():
-    assert_eq(Inventory.render(), "INVENTORY:\nYou aren't carrying anything.\n")
+    assert_eq(Inventory.render(), "INVENTORY:\n (!) You aren't carrying anything.")
 
 func test_clear_inventory():
     var item = Item.new("Beach Ball")
     Inventory.add(item)
-    assert_eq(Inventory.render(), "INVENTORY:\nBeach Ball\n")
+    assert_eq(Inventory.render(), "INVENTORY:\nBeach Ball")
 
     Inventory.clear()
-    assert_eq(Inventory.render(), "INVENTORY:\nYou aren't carrying anything.\n")
+    assert_eq(Inventory.render(), "INVENTORY:\n (!) You aren't carrying anything.")
 
 func test_has_one_item():
     Inventory.add(Item.new("apple"))
-    assert_eq(Inventory.render(), "INVENTORY:\napple\n")
+    assert_eq(Inventory.render(), "INVENTORY:\napple")
 
 func test_has_two_items():
     Inventory.add(Item.new("catamaran"))
     Inventory.add(Item.new("Dick's Picks"))
-    assert_eq(Inventory.render(), "INVENTORY:\ncatamaran\nDick's Picks\n")
+    assert_eq(Inventory.render(), "INVENTORY:\ncatamaran\nDick's Picks")

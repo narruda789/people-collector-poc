@@ -47,22 +47,22 @@ func process_action(action, target = null):
 
 	# If the current area is empty then start with the initial area.
 	if currentArea == null:
-		currentArea = "area1"
-		return render_area(areas[currentArea])
+		currentArea = areas["area1"]
+		return render_area(currentArea)
 
 	# EXAMINE
 	if action == InstructionSet.EXAMINE:
-		var instruction = ExamineInstruction.new(areas[currentArea], target)
+		var instruction = ExamineInstruction.new(currentArea, target)
 		return instruction.execute()
 
 	# todo: handle case when item doesn't exist
 	#   (and refactor to its own instruction class!)
 	# GET
 	if action == InstructionSet.GET and target != null:
-		if target in areas[currentArea]["items"].keys():
-			var new_item = Item.new(areas[currentArea]["items"][target]["displayName"])
+		if target in currentArea["items"].keys():
+			var new_item = Item.new(currentArea["items"][target]["displayName"])
 			Inventory.add(new_item)
-			areas[currentArea]["items"].erase(target)
+			currentArea["items"].erase(target)
 			return "You get the " + new_item._name;
 
 		return "Can't pick that up."
