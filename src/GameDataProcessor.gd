@@ -61,12 +61,9 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# todo: update constructor
 	if action == InstructionSet.EXAMINE:
 		if instruction == null:
-			instruction = ExamineInstruction.new(current_area, target)
+			instruction = ExamineInstruction.new(target, current_area)
 		current_poi = target
 		return instruction.execute()
-
-	# todo: handle case when item doesn't exist
-	#   (and refactor to its own instruction class!)
 
 	# TAKE
 	if action == InstructionSet.TAKE:
@@ -80,8 +77,5 @@ func process_action(action, target = null, instruction: Instruction = null):
 			instruction = InventoryInstruction.new()
 		return instruction.execute()
 
-	# todo: after each instruction executes, print area description!
-
-# Render a given area, including the exits.
 func render_area(area):
 	return area["intro"]
