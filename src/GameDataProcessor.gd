@@ -63,25 +63,23 @@ func process_action(action, target = null, instruction: Instruction = null):
 		if instruction == null:
 			instruction = ExamineInstruction.new(target, current_area)
 		current_poi = target
-		return instruction.execute()
 
 	# TAKE
 	if action == InstructionSet.TAKE:
 		if instruction == null:
 			instruction = TakeInstruction.new(target, current_area, current_poi)
-		return instruction.execute()
 
 	# INVENTORY
 	if action == InstructionSet.INVENTORY:
 		if instruction == null:
 			instruction = InventoryInstruction.new()
-		return instruction.execute()
 
 	# MAP
 	if action == InstructionSet.MAP:
 		if instruction == null:
 			instruction = MapInstruction.new(areas, current_area)
-		return instruction.execute()
+	
+	return instruction.execute()
 
 func render_area(area):
 	return area["intro"]
