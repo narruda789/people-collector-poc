@@ -4,7 +4,7 @@ const NOT_FOUND = "not_found"
 
 const HELP = "help"
 
-const RESET = "reset"
+const RESTART = "restart"
 
 const EXAMINE = "examine"
 

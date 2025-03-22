@@ -25,8 +25,8 @@ func test_random_text_produces_error():
 func test_help_is_parsed_correctly():
 	assert_eq(text_parser.parse('help'), InstructionSet.HELP)
 
-func test_reset_is_parsed_correctly():
-	assert_eq(text_parser.parse('reset'), InstructionSet.RESET)
+func test_restart_is_parsed_correctly():
+	assert_eq(text_parser.parse('restart'), InstructionSet.RESTART)
 
 func test_inventory_is_parsed_correctly():
 	var input = [

@@ -3,7 +3,7 @@ class_name GameDataProcessor
 # todo: make areas a singleton rather than passing chunks of it around
 var areas
 var current_area = null
-var _current_poi = null
+var current_poi = null
 
 func _init():
 	areas = loadJsonData("res://data/game1.json")
@@ -35,18 +35,20 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# HELP
 	if action == InstructionSet.HELP:
 		var helpText = "HELP:"
-		helpText += "\n  examine <item> | Get more information about an item"
-		helpText += "\n  take <item>    | Pick up an item"
-		helpText += "\n  [lb]i[rb]nventory    | See all the items Alya is carrying"
+		helpText += "\n  examine <target> | Get more information about a target"
+		helpText += "\n  take <item>      | Pick up an item"
+		helpText += "\n  [lb]i[rb]nventory      | See all the items Alya is carrying"
 		helpText += "\n  "
-		helpText += "\n  reset          | Restart game from the beginning"
-		helpText += "\n  help           | Open this help menu"
+		helpText += "\n  restart          | Restart game from the beginning"
+		helpText += "\n  help             | Open this help menu"
 
 		return helpText
 
-	# RESET
-	if action == InstructionSet.RESET:
+	# RESTART
+	if action == InstructionSet.RESTART:
 		current_area = null
+		current_poi = null
+		Inventory.clear()
 		areas = loadJsonData("res://data/game1.json")
 		return process_action(null)
 
@@ -60,7 +62,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.EXAMINE:
 		if instruction == null:
 			instruction = ExamineInstruction.new(current_area, target)
-		_current_poi = target
+		current_poi = target
 		return instruction.execute()
 
 	# todo: handle case when item doesn't exist
@@ -69,7 +71,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# TAKE
 	if action == InstructionSet.TAKE:
 		if instruction == null:
-			instruction = TakeInstruction.new(target, current_area, _current_poi)
+			instruction = TakeInstruction.new(target, current_area, current_poi)
 		return instruction.execute()
 
 	# INVENTORY

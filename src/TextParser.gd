@@ -18,8 +18,8 @@ func parse(text):
 		"help":
 			return InstructionSet.HELP
 
-		"reset":
-			return InstructionSet.RESET
+		"restart":
+			return InstructionSet.RESTART
 
 	return InstructionSet.NOT_FOUND
 
