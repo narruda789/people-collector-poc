@@ -24,14 +24,18 @@ func test_random_text_produces_error():
 
 func test_help_is_parsed_correctly():
 	assert_eq(text_parser.parse('help'), InstructionSet.HELP)
+	assert_eq(text_parser.parse('hElP'), InstructionSet.HELP)
 
 func test_restart_is_parsed_correctly():
 	assert_eq(text_parser.parse('restart'), InstructionSet.RESTART)
+	assert_eq(text_parser.parse('rEsTaRt'), InstructionSet.RESTART)
 
 func test_inventory_is_parsed_correctly():
 	var input = [
 		"inventory",
+		"iNvEnToRy",
 		"i",
+		"I"
 	]
 	for input_option in input:
 		assert_eq(text_parser.parse(input_option), InstructionSet.INVENTORY)
@@ -43,6 +47,10 @@ func test_object_commands_are_parsed_correctly():
 
 	var tests = {
 		"take bucket": {
+			'instruction': InstructionSet.TAKE,
+			'object': 'bucket',
+		},
+		"tAkE bUcKeT": {
 			'instruction': InstructionSet.TAKE,
 			'object': 'bucket',
 		},
@@ -62,11 +70,11 @@ func test_examine_is_parsed_correctly():
 			"expected_target": "geranium"
 		},
 		{
-			"command": "examine Father",
-			"expected_target": "Father"
+			"command": "eXaMiNe Father",
+			"expected_target": "father"
 		},
 		{
-			"command": "examine jump rope",
+			"command": "EXAMINE JUMP ROPE",
 			"expected_target": "jump rope"
 		}
 	]

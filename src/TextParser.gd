@@ -4,6 +4,7 @@ var _target = null
 
 # Parse a given input string into an instruction.
 func parse(text):
+	text = text.to_lower()
 	var first_word_break = text.find(" ")
 	var command_word = text.substr(0, first_word_break)
 
