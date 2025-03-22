@@ -80,7 +80,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# MAP
 	if action == InstructionSet.MAP:
 		if instruction == null:
-			instruction = MapInstruction.new()
+			instruction = MapInstruction.new(areas, current_area)
 		return instruction.execute()
 
 func render_area(area):
