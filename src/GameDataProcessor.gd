@@ -6,7 +6,7 @@ var current_area = null
 var current_poi = null
 
 func _init():
-	areas = loadJsonData("res://data/game1.json")
+	areas = loadJsonData("res://data/alya.json")
 	Inventory.clear()
 
 # Load the game data from the json file.
@@ -49,12 +49,12 @@ func process_action(action, target = null, instruction: Instruction = null):
 		current_area = null
 		current_poi = null
 		Inventory.clear()
-		areas = loadJsonData("res://data/game1.json")
+		areas = loadJsonData("res://data/alya.json")
 		return process_action(null)
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
-		current_area = areas["area1"]
+		current_area = areas["alyasRoom"]
 		return render_area(current_area)
 
 	# EXAMINE

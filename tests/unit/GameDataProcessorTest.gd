@@ -3,7 +3,7 @@ extends GutTest
 var _processor = GameDataProcessor.new()
 
 func before_each():
-    _processor.current_area = _processor.areas["area1"]
+    _processor.current_area = _processor.areas["alyasRoom"]
 
 func test_not_found_instruction():
     var message = _processor.process_action(InstructionSet.NOT_FOUND)
@@ -37,7 +37,7 @@ func test_restart_instruction_resets_game_data():
 
     _processor.process_action(InstructionSet.RESTART)
     
-    assert_eq(_processor.current_area, _processor.areas["area1"])
+    assert_eq(_processor.current_area, _processor.areas["alyasRoom"])
     assert_null(_processor.current_poi)
     assert_not_null(_processor.areas)
     assert_eq(Inventory.get_as_list(), [])
