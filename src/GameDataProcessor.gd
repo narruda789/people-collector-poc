@@ -2,7 +2,8 @@ class_name GameDataProcessor
 
 # todo: make areas a singleton rather than passing chunks of it around
 var areas
-var currentArea = null
+var current_area = null
+var _current_poi = null
 
 func _init():
 	areas = loadJsonData("res://data/game1.json")
@@ -27,7 +28,6 @@ func loadJsonData(fileName):
 		assert(false, "JSON Parse Error")
 
 func process_action(action, target = null, instruction: Instruction = null):
-
 	# NOT FOUND
 	if action == InstructionSet.NOT_FOUND:
 		return "Can't do that!"
@@ -36,7 +36,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.HELP:
 		var helpText = "HELP:"
 		helpText += "\n  examine <item> | Get more information about an item"
-		helpText += "\n  take <item>     | Pick up an item"
+		helpText += "\n  take <item>    | Pick up an item"
 		helpText += "\n  [lb]i[rb]nventory    | See all the items Alya is carrying"
 		helpText += "\n  "
 		helpText += "\n  reset          | Restart game from the beginning"
@@ -46,19 +46,21 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 	# RESET
 	if action == InstructionSet.RESET:
-		currentArea = null
+		current_area = null
 		areas = loadJsonData("res://data/game1.json")
 		return process_action(null)
 
 	# If the current area is empty then start with the initial area.
-	if currentArea == null:
-		currentArea = areas["area1"]
-		return render_area(currentArea)
+	if current_area == null:
+		current_area = areas["area1"]
+		return render_area(current_area)
 
 	# EXAMINE
+	# todo: update constructor
 	if action == InstructionSet.EXAMINE:
 		if instruction == null:
-			instruction = ExamineInstruction.new(currentArea, target)
+			instruction = ExamineInstruction.new(current_area, target)
+		_current_poi = target
 		return instruction.execute()
 
 	# todo: handle case when item doesn't exist
@@ -67,7 +69,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# TAKE
 	if action == InstructionSet.TAKE:
 		if instruction == null:
-			instruction = TakeInstruction.new(currentArea, target)
+			instruction = TakeInstruction.new(target, current_area, _current_poi)
 		return instruction.execute()
 
 	# INVENTORY
