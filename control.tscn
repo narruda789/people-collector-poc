@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brmbxijk1pidd"]
 
+[ext_resource type="FontFile" uid="uid://cf0x1c7yh66k7" path="res://font/VerilySerifMono.otf" id="1_qlt6c"]
 [ext_resource type="Script" path="res://LineEdit.gd" id="2_8hy2q"]
-[ext_resource type="FontFile" uid="uid://codb53revgxch" path="res://font/09809_COURIER.ttf" id="2_i2cdd"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_albfg"]
 content_margin_left = 10.0
@@ -45,7 +45,7 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_i2cdd")
+theme_override_fonts/normal_font = ExtResource("1_qlt6c")
 theme_override_font_sizes/normal_font_size = 20
 scroll_following = true
 
@@ -54,7 +54,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Background/MarginContainer/Rows/PanelContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_i2cdd")
+theme_override_fonts/font = ExtResource("1_qlt6c")
 text = "> "
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -63,7 +63,7 @@ vertical_alignment = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/caret_width = 7
-theme_override_fonts/font = ExtResource("2_i2cdd")
+theme_override_fonts/font = ExtResource("1_qlt6c")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxLine_albfg")
 theme_override_styles/focus = SubResource("StyleBoxLine_albfg")
