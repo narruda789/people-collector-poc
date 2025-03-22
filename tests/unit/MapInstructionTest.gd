@@ -55,6 +55,13 @@ func test_map_of_lansing():
     var map = instruction.execute()
     assert_string_contains(map, "Frandor")
 
+func test_map_shows_current_location():
+    var instruction = MapInstruction.new(_mock_areas, _mock_areas["stadium"])
+    var map = instruction.execute()
+    assert_string_contains(map, "  Library")
+    assert_string_contains(map, "  Stadium (Alya is here!")
+    assert_string_contains(map, "  Frita Batidos")
+
 func test_no_map_available():
     var instruction = MapInstruction.new(_mock_areas, _mock_areas["mystery spot"])
     var map = instruction.execute()
