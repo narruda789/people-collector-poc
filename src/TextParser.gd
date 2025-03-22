@@ -15,6 +15,8 @@ func parse(text):
 			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.TAKE)
 		"inventory", "i":
 			return InstructionSet.INVENTORY
+		"map", "m":
+			return InstructionSet.MAP
 
 		"help":
 			return InstructionSet.HELP

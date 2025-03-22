@@ -38,6 +38,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 		helpText += "\n  examine <target> | Get more information about a target"
 		helpText += "\n  take <item>      | Pick up an item"
 		helpText += "\n  [lb]i[rb]nventory      | See all the items Alya is carrying"
+		helpText += "\n  [lb]m[rb]ap            | View a map of the area"
 		helpText += "\n  "
 		helpText += "\n  restart          | Restart game from the beginning"
 		helpText += "\n  help             | Open this help menu"
@@ -58,7 +59,6 @@ func process_action(action, target = null, instruction: Instruction = null):
 		return render_area(current_area)
 
 	# EXAMINE
-	# todo: update constructor
 	if action == InstructionSet.EXAMINE:
 		if instruction == null:
 			instruction = ExamineInstruction.new(target, current_area)
@@ -75,6 +75,12 @@ func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.INVENTORY:
 		if instruction == null:
 			instruction = InventoryInstruction.new()
+		return instruction.execute()
+
+	# MAP
+	if action == InstructionSet.MAP:
+		if instruction == null:
+			instruction = MapInstruction.new()
 		return instruction.execute()
 
 func render_area(area):

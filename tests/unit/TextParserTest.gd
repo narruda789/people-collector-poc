@@ -81,3 +81,13 @@ func test_examine_is_parsed_correctly():
 	for input_option in input:
 		assert_eq(text_parser.parse(input_option.command), InstructionSet.EXAMINE)
 		assert_eq(text_parser.get_target(), input_option.expected_target)
+
+func test_map_is_parsed_correctly():
+	var input = [
+		"map",
+		"MAP",
+		"m",
+		"M"
+	]
+	for input_option in input:
+		assert_eq(text_parser.parse(input_option), InstructionSet.MAP)

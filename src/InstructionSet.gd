@@ -11,3 +11,5 @@ const EXAMINE = "examine"
 const TAKE = "take"
 
 const INVENTORY = "inventory"
+
+const MAP = "map"
