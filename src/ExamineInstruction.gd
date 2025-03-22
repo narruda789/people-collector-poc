@@ -1,11 +1,11 @@
 class_name ExamineInstruction extends Instruction
 
-var _area = null
 var _poi = null
+var _area = null
 
-func _init(area, poi):
-	_area = area
+func _init(poi, area):
 	_poi = poi
+	_area = area
 
 func execute():
 
