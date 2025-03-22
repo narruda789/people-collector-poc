@@ -28,6 +28,11 @@ func loadJsonData(fileName):
 		assert(false, "JSON Parse Error")
 
 func process_action(action, target = null, instruction: Instruction = null):
+	if action == InstructionSet.RESTART:
+		current_area = null
+		current_poi = null
+		Inventory.clear()
+		areas = loadJsonData("res://data/alya.json")
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
@@ -38,13 +43,6 @@ func process_action(action, target = null, instruction: Instruction = null):
 		InstructionSet.HELP:
 			if instruction == null:
 				instruction = HelpInstruction.new()
-
-		InstructionSet.RESTART:
-			current_area = null
-			current_poi = null
-			Inventory.clear()
-			areas = loadJsonData("res://data/alya.json")
-			return process_action(null)
 
 		InstructionSet.EXAMINE:
 			if instruction == null:
