@@ -15,5 +15,7 @@ func execute():
 		var map = "%s:" % _areas.maps[map_name].name.to_upper()
 		for area in map_areas:
 			map += "\n  %s" % _areas[area].name
+			if _areas[area] == _current_area:
+				map += " (Alya is here!)"
 		return map
 	return "???:\n (!) No map available!"
