@@ -5,10 +5,6 @@ var _processor = GameDataProcessor.new()
 func before_each():
 	_processor.current_area = _processor.areas["alya's room"]
 
-func test_not_found_instruction():
-	var message = _processor.process_action(InstructionSet.NOT_FOUND)
-	assert_eq(message, "Can't do that!")
-
 func test_help_instruction_says_help():
 	var message = _processor.process_action(InstructionSet.HELP)
 	assert_string_contains(message, "HELP:")
@@ -46,4 +42,9 @@ func test_restart_instruction_resets_game_data():
 func test_map_instruction_calls_execute():
 	var instruction_double = InstructionDouble.new()
 	_processor.process_action(InstructionSet.MAP, null, instruction_double)
+	assert_true(instruction_double.was_execute_called)
+
+func test_not_found_instruction_calls_execute():
+	var instruction_double = InstructionDouble.new()
+	_processor.process_action(InstructionSet.NOT_FOUND, null, instruction_double)
 	assert_true(instruction_double.was_execute_called)
