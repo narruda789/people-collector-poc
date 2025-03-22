@@ -54,7 +54,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
-		current_area = areas["alyasRoom"]
+		current_area = areas["alya's room"]
 		return render_area(current_area)
 
 	# EXAMINE

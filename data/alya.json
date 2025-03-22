@@ -1,6 +1,16 @@
 {
-	"alyasRoom": {
-		"name" : "Alya's Bedroom",
+	"maps" : {
+		"alya's house" : {
+			"name" : "Alya's House",
+			"areas" : [
+				"alya's room",
+				"downstairs"
+			]
+		}
+	},
+	"alya's room": {
+		"name" : "Alya's Room",
+		"map" : "alya's house",
 		"intro" : "It's finally here!\n\nToday's the day Alya sets off on her big adventure!\n\nShe wakes up in her bedroom. It's the same as always: the south-facing window, the tidy desk, the elaborate doll house in the corner.\n\nBut today, something is different. Alya can't put her finger on it, but the familiar comforts of her room seem somehow livelier than usual.\n\nIt's a great day for adventure!\n\n (!) HINT: Use 'examine <item>' to explore Alya's room!",
 		"description" : "Everything in Alya's room is the same as always: the south-facing window, the tidy writing desk, the elaborate doll house in the corner.",
 		"poi" : {
@@ -21,5 +31,9 @@
 				"description" : "A stack of letters, all from Henry, takes permanent residence on the polished surface of Alya's writing desk.\n\nHer last letter must have reached Henry a week ago. She expects to hear back from him any day now!"
 			}
 		}
+	},
+	"downstairs" : {
+		"name" : "Downstairs",
+		"map" : "alya's house"
 	}
 }
