@@ -28,44 +28,60 @@ func loadJsonData(fileName):
 		assert(false, "JSON Parse Error")
 
 func process_action(action, target = null, instruction: Instruction = null):
+	# NOT FOUND
+	if action == InstructionSet.NOT_FOUND:
+		return "Can't do that!"
+
+	# HELP
+	if action == InstructionSet.HELP:
+		var helpText = "HELP:"
+		helpText += "\n  examine <target> | Get more information about a target"
+		helpText += "\n  take <item>      | Pick up an item"
+		helpText += "\n  [lb]i[rb]nventory      | See all the items Alya is carrying"
+		helpText += "\n  [lb]m[rb]ap            | View a map of the area"
+		helpText += "\n  "
+		helpText += "\n  restart          | Restart game from the beginning"
+		helpText += "\n  help             | Open this help menu"
+
+		return helpText
+
+	# RESTART
 	if action == InstructionSet.RESTART:
 		current_area = null
 		current_poi = null
 		Inventory.clear()
 		areas = loadJsonData("res://data/alya.json")
+		return process_action(null)
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
 		current_area = areas["alya's room"]
 		return render_area(current_area)
 
-	match action:
-		InstructionSet.HELP:
-			if instruction == null:
-				instruction = HelpInstruction.new()
+	# EXAMINE
+	if action == InstructionSet.EXAMINE:
+		if instruction == null:
+			instruction = ExamineInstruction.new(target, current_area)
+		current_poi = target
+		return instruction.execute()
 
-		InstructionSet.EXAMINE:
-			if instruction == null:
-				instruction = ExamineInstruction.new(target, current_area)
-			current_poi = target
+	# TAKE
+	if action == InstructionSet.TAKE:
+		if instruction == null:
+			instruction = TakeInstruction.new(target, current_area, current_poi)
+		return instruction.execute()
 
-		InstructionSet.TAKE:
-			if instruction == null:
-				instruction = TakeInstruction.new(target, current_area, current_poi)
+	# INVENTORY
+	if action == InstructionSet.INVENTORY:
+		if instruction == null:
+			instruction = InventoryInstruction.new()
+		return instruction.execute()
 
-		InstructionSet.INVENTORY:
-			if instruction == null:
-				instruction = InventoryInstruction.new()
-
-		InstructionSet.MAP:
-			if instruction == null:
-				instruction = MapInstruction.new(areas, current_area)
-	
-		InstructionSet.NOT_FOUND:
-			if instruction == null:
-				instruction = NotFoundInstruction.new()
-
-	return instruction.execute()
+	# MAP
+	if action == InstructionSet.MAP:
+		if instruction == null:
+			instruction = MapInstruction.new()
+		return instruction.execute()
 
 func render_area(area):
 	return area["intro"]
