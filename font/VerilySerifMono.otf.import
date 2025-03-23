@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://codb53revgxch"
-path="res://.godot/imported/09809_COURIER.ttf-bffa577e08ffe578782c521685c7b837.fontdata"
+uid="uid://dd374mra6ncym"
+path="res://.godot/imported/VerilySerifMono.otf-a7bb0b17f260c88b20e1b7d352b36bcb.fontdata"
 
 [deps]
 
-source_file="res://font/09809_COURIER.ttf"
-dest_files=["res://.godot/imported/09809_COURIER.ttf-bffa577e08ffe578782c521685c7b837.fontdata"]
+source_file="res://font/VerilySerifMono.otf"
+dest_files=["res://.godot/imported/VerilySerifMono.otf-a7bb0b17f260c88b20e1b7d352b36bcb.fontdata"]
 
 [params]
 
