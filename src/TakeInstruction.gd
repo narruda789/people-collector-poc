@@ -16,7 +16,8 @@ func execute():
 
 func _take_item(scope):
 	if "items" in scope and _item in scope.items:
-		Inventory.add(Item.new(_item))
+		var item_display_name = scope.items[_item].displayName
+		Inventory.add(Item.new(_item, item_display_name))
 		scope.items.erase(_item)
-		return "Alya picks up the %s." % _item
+		return "Alya picks up the %s." % item_display_name
 	return "Can't pick that up."

@@ -16,9 +16,9 @@ func execute():
 	var message = ""
 	message += poi.description
 
-	if "items" in poi and not poi.items.is_empty():
-		message += "\n"
+	if "items" in poi:
 		for item in poi.items:
+			message += "\n"
 			message += "\n%s" % poi.items[item].beforePickup
 
 	return message
