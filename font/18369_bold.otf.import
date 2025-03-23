@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dd374mra6ncym"
-path="res://.godot/imported/VerilySerifMono.otf-a7bb0b17f260c88b20e1b7d352b36bcb.fontdata"
+uid="uid://1tfmy5lwbebg"
+path="res://.godot/imported/18369_bold.otf-7a16d84f7884b93c79c25fe5f218f8e4.fontdata"
 
 [deps]
 
-source_file="res://font/VerilySerifMono.otf"
-dest_files=["res://.godot/imported/VerilySerifMono.otf-a7bb0b17f260c88b20e1b7d352b36bcb.fontdata"]
+source_file="res://font/18369_bold.otf"
+dest_files=["res://.godot/imported/18369_bold.otf-7a16d84f7884b93c79c25fe5f218f8e4.fontdata"]
 
 [params]
 
