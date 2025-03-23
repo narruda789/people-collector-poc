@@ -17,7 +17,7 @@ func test_restart_instruction_resets_game_data():
 	_processor.current_area = "some area"
 	_processor.current_poi = "some poi"
 	_processor.areas = "some game data"
-	Inventory.add(Item.new("some item"))
+	Inventory.add(Item.new("some item", "Some Item"))
 
 	_processor.process_action(InstructionSet.RESTART)
 	
