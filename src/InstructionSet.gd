@@ -4,12 +4,22 @@ const NOT_FOUND = "not_found"
 
 const HELP = "help"
 
-const RESTART = "restart"
+const RESET = "reset"
 
-const EXAMINE = "examine"
+const QUIT = "quit"
 
-const TAKE = "take"
+const LOOK = "look"
 
-const INVENTORY = "inventory"
+const NORTH = "north"
 
-const MAP = "map"
+const SOUTH = "south"
+
+const EAST = "east"
+
+const WEST = "west"
+
+const GET = "get"
+
+const OPEN = "open"
+
+const CLOSE = "close"

@@ -1,13 +1,13 @@
 class_name GameDataProcessor
 
-# todo: make areas a singleton rather than passing chunks of it around
-var areas
-var current_area = null
-var current_poi = null
+var InstructionSet = load("res://src/InstructionSet.gd")
+
+var rooms
+var currentRoom = null
+var inventory = {}
 
 func _init():
-	areas = loadJsonData("res://data/alya.json")
-	Inventory.clear()
+	rooms = loadJsonData("res://data/game1.json")
 
 # Load the game data from the json file.
 func loadJsonData(fileName):
@@ -27,61 +27,85 @@ func loadJsonData(fileName):
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		assert(false, "JSON Parse Error")
 
-func process_action(action, target = null, instruction: Instruction = null):
-	# NOT FOUND
-	if action == InstructionSet.NOT_FOUND:
-		return "Can't do that!"
-
-	# HELP
+func process_action(action, object = null):
+	# React to the help command.
 	if action == InstructionSet.HELP:
-		var helpText = "HELP:"
-		helpText += "\n  examine <target> | Get more information about a target"
-		helpText += "\n  take <item>      | Pick up an item"
-		helpText += "\n  [lb]i[rb]nventory      | See all the items Alya is carrying"
-		helpText += "\n  [lb]m[rb]ap            | View a map of the area"
-		helpText += "\n  "
-		helpText += "\n  restart          | Restart game from the beginning"
-		helpText += "\n  help             | Open this help menu"
-
+		var helpText = ''
+		helpText += 'Instructions:' + "\n"
+		helpText += '- Use "look" around the room you are in.' + "\n"
+		helpText += '- Use "north", "south", "east", "west" to move in that direction.' + "\n"
+		helpText += '- Use "open" or "close" to interact with doors.' + "\n"
+		helpText += '- Use "get <object>" pick up objects.' + "\n"
+		helpText += '- Use "reset" to reset the game, or "exit" to quit.' + "\n"
 		return helpText
 
-	# RESTART
-	if action == InstructionSet.RESTART:
-		current_area = null
-		current_poi = null
-		Inventory.clear()
-		areas = loadJsonData("res://data/alya.json")
+	# React to the reset command.
+	if action == InstructionSet.RESET:
+		currentRoom = null
+		inventory = {}
+		rooms = loadJsonData("res://data/game1.json")
 		return process_action(null)
 
-	# If the current area is empty then start with the initial area.
-	if current_area == null:
-		current_area = areas["alya's room"]
-		return render_area(current_area)
+	# React to the quit command.
+	if action == InstructionSet.QUIT:
+		Engine.get_main_loop().quit()
+		return 'Bye...'
 
-	# EXAMINE
-	if action == InstructionSet.EXAMINE:
-		if instruction == null:
-			instruction = ExamineInstruction.new(target, current_area)
-		current_poi = target
-		return instruction.execute()
+	# If the current room is empty then start with the initial room.
+	if currentRoom == null:
+		currentRoom = 'room1'
+		return render_room(rooms[currentRoom])
 
-	# TAKE
-	if action == InstructionSet.TAKE:
-		if instruction == null:
-			instruction = TakeInstruction.new(target, current_area, current_poi)
-		return instruction.execute()
+	# React to the look command.
+	if action == InstructionSet.LOOK:
+		return render_room(rooms[currentRoom])
 
-	# INVENTORY
-	if action == InstructionSet.INVENTORY:
-		if instruction == null:
-			instruction = InventoryInstruction.new()
-		return instruction.execute()
+	if action == InstructionSet.GET and object != null:
+		for item in rooms[currentRoom]['items']:
+			if rooms[currentRoom]['items'][item]['name'] == object:
+				inventory[item] = rooms[currentRoom]['items'][item]
+				return 'You get the ' + object;
+		return 'There is no ' + object + "\n"
 
-	# MAP
-	if action == InstructionSet.MAP:
-		if instruction == null:
-			instruction = MapInstruction.new()
-		return instruction.execute()
+	if action == InstructionSet.OPEN and object != null:
+		var direction = object.get_slice(' ', 0)
+		var exit = object.get_slice(' ', 1)
+		for item in rooms[currentRoom]['exits']:
+			if item == direction:
+				for inventoryItem in inventory:
+					if rooms[currentRoom]['exits'][item]['key'] == inventoryItem:
+						rooms[currentRoom]['exits'][item]['locked'] = false
+						return 'You open the ' + direction + ' door'
+			else:
+				return 'What direction do you want to open?'
+		return 'You do not have the key for this door'
 
-func render_area(area):
-	return area["intro"]
+	# If we get to this point we have a direction of some kind.
+	# Is direction/action valid?
+	if rooms[currentRoom]['exits'].has(action) == false:
+		return 'I don\'t understand!' + "\n"
+
+	# is a direction then change the state to the new room.
+	if rooms[currentRoom]['exits'][action].has('destination') == true:
+		if rooms[currentRoom]['exits'][action].has('locked') and rooms[currentRoom]['exits'][action]['locked'] == true:
+			return "The door is locked!\n"
+		currentRoom = rooms[currentRoom]['exits'][action]['destination']
+
+	# return the text of the new room
+	return render_room(rooms[currentRoom])
+
+# Render a given room, including the exits.
+func render_room(room):
+	var renderedRoom = ''
+	renderedRoom += room['intro'] + "\n"
+
+	if room.has('items') == true:
+		for item in room['items']:
+			if inventory.has(item) == false:
+				renderedRoom += room['items'][item]['description'] + "\n"
+
+	renderedRoom += "\nPossible exists are:\n"
+
+	for exit in room['exits']:
+		renderedRoom += "- " + room['exits'][exit]['description'] + "\n"
+	return renderedRoom

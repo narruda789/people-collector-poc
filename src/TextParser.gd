@@ -1,37 +1,65 @@
 class_name TextParser
 
-var _target = null
+var InstructionSet = load("res://src/InstructionSet.gd")
+
+var object = null
 
 # Parse a given input string into an instruction.
 func parse(text):
-	text = text.to_lower()
-	var first_word_break = text.find(" ")
-	var command_word = text.substr(0, first_word_break)
+	match text:
+		'go north':
+			return InstructionSet.NORTH
+		'north':
+			return InstructionSet.NORTH
+		'go south':
+			return InstructionSet.SOUTH
+		'south':
+			return InstructionSet.SOUTH
+		'go east':
+			return InstructionSet.EAST
+		'east':
+			return InstructionSet.EAST
+		'go west':
+			return InstructionSet.WEST
+		'west':
+			return InstructionSet.WEST
 
-	match command_word:
-		"examine":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.EXAMINE)
-		"take":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.TAKE)
-		"inventory", "i":
-			return InstructionSet.INVENTORY
-		"map", "m":
-			return InstructionSet.MAP
-
-		"help":
+		'look':
+			return InstructionSet.LOOK
+		'help':
+			return InstructionSet.HELP
+		'help me':
 			return InstructionSet.HELP
 
-		"restart":
-			return InstructionSet.RESTART
+		'reset':
+			return InstructionSet.RESET
+		'quit':
+			return InstructionSet.QUIT
+		'exit':
+			return InstructionSet.QUIT
+
+	if text.begins_with('get '):
+		var regex = RegEx.new()
+		regex.compile("get\\s(?<object>.*(\\s.*)?)")
+		var results = regex.search(text)
+		object = results.get_string('object')
+		return InstructionSet.GET
+
+	if text.begins_with('open '):
+		var regex = RegEx.new()
+		regex.compile("open\\s(?<object>.*(\\s.*)?)")
+		var results = regex.search(text)
+		object = results.get_string('object')
+		return InstructionSet.OPEN
+
+	if text.begins_with('close '):
+		var regex = RegEx.new()
+		regex.compile("close\\s(?<object>.*(\\s.*)?)")
+		var results = regex.search(text)
+		object = results.get_string('object')
+		return InstructionSet.CLOSE
 
 	return InstructionSet.NOT_FOUND
 
-func get_target():
-	return _target
-
-func _set_target_and_return_instruction(text, first_word_break, instruction):
-	if first_word_break == -1:
-		# transitive command with no target
-		return InstructionSet.NOT_FOUND
-	_target = text.substr(first_word_break, -1).strip_edges()
-	return instruction
+func get_object():
+	return object
