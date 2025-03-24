@@ -5,8 +5,6 @@ var text_parser = null
 func before_each():
 	text_parser = TextParser.new()
 
-# todo: make commands case insensitive
-
 func test_random_text_produces_error():
 	var entered_text = {
 		"": InstructionSet.NOT_FOUND,
