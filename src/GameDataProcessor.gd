@@ -65,6 +65,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 			if instruction == null:
 				instruction = NotFoundInstruction.new()
 
+	# todo: handle null instruction case?
 	return instruction.execute()
 
 func render_area(area):
