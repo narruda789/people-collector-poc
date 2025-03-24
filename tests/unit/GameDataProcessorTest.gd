@@ -26,17 +26,12 @@ func test_restart_instruction_resets_game_data():
 	assert_not_null(_processor.areas)
 	assert_eq(Inventory.get_as_list(), [])
 
-func test_map_instruction_calls_execute():
+func test_instruction_calls_execute():
 	var instruction_double = InstructionDouble.new()
-	_processor.process_action(InstructionSet.MAP, null, instruction_double)
+	_processor.process_action(null, null, instruction_double)
 	assert_true(instruction_double.was_execute_called)
 
-func test_not_found_instruction_calls_execute():
+func test_restart_instruction_does_not_call_execute():
 	var instruction_double = InstructionDouble.new()
-	_processor.process_action(InstructionSet.NOT_FOUND, null, instruction_double)
-	assert_true(instruction_double.was_execute_called)
-
-func test_help_instruction_calls_execute():
-	var instruction_double = InstructionDouble.new()
-	_processor.process_action(InstructionSet.HELP, null, instruction_double)
-	assert_true(instruction_double.was_execute_called)
+	_processor.process_action(InstructionSet.RESTART, null, instruction_double)
+	assert_false(instruction_double.was_execute_called)
