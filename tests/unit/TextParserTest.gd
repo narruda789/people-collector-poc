@@ -1,9 +1,9 @@
 extends GutTest
 
-var text_parser = null
+var _text_parser = null
 
 func before_each():
-	text_parser = TextParser.new()
+	_text_parser = TextParser.new()
 
 func test_random_text_produces_error():
 	var entered_text = {
@@ -18,15 +18,15 @@ func test_random_text_produces_error():
 		"<script>": InstructionSet.NOT_FOUND,
 	}
 	for text in entered_text:
-		assert_eq(text_parser.parse(text), entered_text[text])
+		assert_eq(_text_parser.parse(text), entered_text[text])
 
 func test_help_is_parsed_correctly():
-	assert_eq(text_parser.parse('help'), InstructionSet.HELP)
-	assert_eq(text_parser.parse('hElP'), InstructionSet.HELP)
+	assert_eq(_text_parser.parse('help'), InstructionSet.HELP)
+	assert_eq(_text_parser.parse('hElP'), InstructionSet.HELP)
 
 func test_restart_is_parsed_correctly():
-	assert_eq(text_parser.parse('restart'), InstructionSet.RESTART)
-	assert_eq(text_parser.parse('rEsTaRt'), InstructionSet.RESTART)
+	assert_eq(_text_parser.parse('restart'), InstructionSet.RESTART)
+	assert_eq(_text_parser.parse('rEsTaRt'), InstructionSet.RESTART)
 
 func test_inventory_is_parsed_correctly():
 	var input = [
@@ -36,12 +36,12 @@ func test_inventory_is_parsed_correctly():
 		"I"
 	]
 	for input_option in input:
-		assert_eq(text_parser.parse(input_option), InstructionSet.INVENTORY)
+		assert_eq(_text_parser.parse(input_option), InstructionSet.INVENTORY)
 
 func test_object_commands_are_parsed_correctly():
-	assert_eq(text_parser.parse("take"), InstructionSet.NOT_FOUND)
-	assert_eq(text_parser.parse("takebucket"), InstructionSet.NOT_FOUND)
-	assert_eq(text_parser.parse("take-bucket"), InstructionSet.NOT_FOUND)
+	assert_eq(_text_parser.parse("take"), InstructionSet.NOT_FOUND)
+	assert_eq(_text_parser.parse("takebucket"), InstructionSet.NOT_FOUND)
+	assert_eq(_text_parser.parse("take-bucket"), InstructionSet.NOT_FOUND)
 
 	var tests = {
 		"take bucket": {
@@ -54,13 +54,13 @@ func test_object_commands_are_parsed_correctly():
 		},
 	}
 	for test in tests:
-		var instruction = text_parser.parse(test)
+		var instruction = _text_parser.parse(test)
 		assert_eq(instruction, tests[test]['instruction'])
-		var object = text_parser.get_target()
+		var object = _text_parser.get_target()
 		assert_eq(object , tests[test]['object'])
 
 func test_examine_is_parsed_correctly():
-	assert_eq(text_parser.parse("examine"), InstructionSet.NOT_FOUND)
+	assert_eq(_text_parser.parse("examine"), InstructionSet.NOT_FOUND)
 	
 	var input = [
 		{
@@ -77,8 +77,8 @@ func test_examine_is_parsed_correctly():
 		}
 	]
 	for input_option in input:
-		assert_eq(text_parser.parse(input_option.command), InstructionSet.EXAMINE)
-		assert_eq(text_parser.get_target(), input_option.expected_target)
+		assert_eq(_text_parser.parse(input_option.command), InstructionSet.EXAMINE)
+		assert_eq(_text_parser.get_target(), input_option.expected_target)
 
 func test_map_is_parsed_correctly():
 	var input = [
@@ -88,10 +88,10 @@ func test_map_is_parsed_correctly():
 		"M"
 	]
 	for input_option in input:
-		assert_eq(text_parser.parse(input_option), InstructionSet.MAP)
+		assert_eq(_text_parser.parse(input_option), InstructionSet.MAP)
 
 func test_go_is_parsed_correctly():
-	assert_eq(text_parser.parse("go"), InstructionSet.NOT_FOUND)
+	assert_eq(_text_parser.parse("go"), InstructionSet.NOT_FOUND)
 
 	var input = [
 		{
@@ -116,5 +116,15 @@ func test_go_is_parsed_correctly():
 		}
 	]
 	for input_option in input:
-		assert_eq(text_parser.parse(input_option.command), InstructionSet.GO)
-		assert_eq(text_parser.get_target(), input_option.expected_target)
+		assert_eq(_text_parser.parse(input_option.command), InstructionSet.GO)
+		assert_eq(_text_parser.get_target(), input_option.expected_target)
+
+func test_continue_is_parsed_correctly():
+	var input = [
+		"continue",
+		"CONTINUE",
+		"c",
+		"C"
+	]
+	for input_option in input:
+		assert_eq(_text_parser.parse(input_option), InstructionSet.CONTINUE)

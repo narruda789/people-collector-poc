@@ -5,6 +5,9 @@ func process_action(action, target = null, instruction: Instruction = null):
 		match action:
 			InstructionSet.RESTART:
 				instruction = RestartInstruction.new()
+
+			InstructionSet.CONTINUE:
+				instruction = ContinueInstruction.new()
 			
 			InstructionSet.HELP:
 				instruction = HelpInstruction.new()
