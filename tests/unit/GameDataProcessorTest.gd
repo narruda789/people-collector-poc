@@ -30,3 +30,5 @@ func test_restart_instruction_does_not_call_execute():
 	var instruction_double = InstructionDouble.new()
 	_processor.process_action(InstructionSet.RESTART, null, instruction_double)
 	assert_false(instruction_double.was_execute_called)
+
+# todo: maybe just need a happy path functional test for each instruction

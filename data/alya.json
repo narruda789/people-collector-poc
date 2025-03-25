@@ -39,6 +39,7 @@
 	},
 	"downstairs" : {
 		"name" : "Downstairs",
-		"map" : "alya's house"
+		"map" : "alya's house",
+		"intro" : "Went downstairs!"
 	}
 }

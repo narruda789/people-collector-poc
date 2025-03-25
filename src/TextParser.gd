@@ -17,10 +17,10 @@ func parse(text):
 			return InstructionSet.INVENTORY
 		"map", "m":
 			return InstructionSet.MAP
-
+		"go", "g":
+			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.GO)
 		"help":
 			return InstructionSet.HELP
-
 		"restart":
 			return InstructionSet.RESTART
 

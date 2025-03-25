@@ -37,6 +37,10 @@ func process_action(action, target = null, instruction: Instruction = null):
 		InstructionSet.MAP:
 			if instruction == null:
 				instruction = MapInstruction.new()
+
+		InstructionSet.GO:
+			if instruction == null:
+				instruction = GoInstruction.new(target)
 	
 		InstructionSet.NOT_FOUND:
 			if instruction == null:
