@@ -1,11 +1,278 @@
 {
-    "initial area" : "area 1",
-    "game intro" : "Welcome to the game!",
-    "area 1" : {
-        "map" : "map 1",
-        "intro" : "Welcome to Area 1!"
-    },
-    "area 2" : {
-        "map" : "map 1"
+  "metadata": {
+    "title": "The Expanded Chronicles",
+    "version": "0.1.0",
+    "author": "AI & User Collaboration",
+    "_comment": "Basic game metadata"
+  },
+
+  "game_settings": {
+    "start_location": "town_square",
+    "max_inventory_size": 10,
+    "base_player_stats": {
+      "health": 100,
+      "max_health": 100,
+      "attack": 10,
+      "defense": 5
     }
+  },
+
+  "game_intro": [
+    "Welcome, adventurer, to the world of Eldoria!",
+    "Darkness stirs in the forgotten corners...",
+    "Your journey begins now."
+  ],
+
+  "player": {
+    "current_location": "town_square",
+    "inventory": [ "rusty_sword", "bread" ],
+    "stats": {
+        "health": 100,
+        "max_health": 100,
+        "attack": 10,
+        "defense": 5,
+        "experience": 0,
+        "level": 1
+    },
+    "flags": {
+      "met_mayor": false,
+      "accepted_rat_quest": false
+    },
+    "equipped": {
+        "weapon": "rusty_sword",
+        "armor": null
+    },
+    "quests_active": [],
+    "quests_completed": []
+  },
+
+  "game_state": {
+    "world_time": "day",
+    "weather": "clear",
+    "global_flags": {
+      "main_gate_unlocked": false,
+      "dragon_defeated": false
+    }
+  },
+
+  "areas": {
+    "town_square": {
+      "name": "Town Square",
+      "map_ref": "map_town_center",
+      "description": [
+        "You are standing in the bustling town square. Cobblestone paths lead in all directions.",
+        "A weathered fountain sits in the center, currently dry.",
+        "To the north, you see the imposing Town Hall. To the east, a narrow alleyway. To the west, the sign of the 'Sleeping Dragon Inn'. South leads out of town."
+      ],
+      "first_visit_description": "The air is filled with the chatter of merchants and the smell of fresh bread from a nearby bakery. It feels relatively safe here.",
+      "exits": {
+        "north": { "target": "town_hall_entrance", "description": "Path to the Town Hall" },
+        "east": { "target": "narrow_alley", "description": "A dark, narrow alleyway" },
+        "west": { "target": "inn_entrance", "description": "Entrance to the Sleeping Dragon Inn" },
+        "south": {
+            "target": "town_gate",
+            "description": "The main gate leading out of town",
+            "locked": true,
+            "lock_message": "The main gate is currently locked tight.",
+            "unlock_flag": "main_gate_unlocked"
+        }
+      },
+      "items": [ "discarded_leaflet" ],
+      "npcs": [ "mayor_haggard", "town_guard_1" ],
+      "events": {
+        "on_enter": [
+          { "type": "check_flag", "flag": "met_mayor", "condition": false, "action": { "type": "message", "text": "You notice the Mayor looking worried near the fountain."} }
+        ],
+        "look_fountain": { "type": "message", "text": "The stone fountain is old and covered in moss. It seems it hasn't held water in years." }
+      },
+      "_comment": "Main starting area"
+    },
+    "narrow_alley": {
+      "name": "Narrow Alley",
+      "map_ref": "map_town_east",
+      "description": [
+        "This alley is dark and smells faintly of refuse. Rickety wooden balconies loom overhead.",
+        "You see a dimly lit doorway further east. The entrance back to the town square is to the west."
+      ],
+      "exits": {
+        "west": { "target": "town_square", "description": "Back to the Town Square" },
+        "east": { "target": "shady_shop", "description": "A dimly lit doorway", "locked": true, "key_required": "shop_key", "lock_message": "The door is locked." }
+      },
+      "items": [ "bent_coin" ],
+      "npcs": [],
+      "enemies": [ { "id": "giant_rat", "respawn_time": 300 } ],
+      "_comment": "A potentially dangerous area with an enemy"
+    },
+    "town_hall_entrance": {
+       "name": "Town Hall Entrance",
+       "map_ref": "map_town_north",
+       "description": "You stand before the large oak doors of the Town Hall. A noticeboard is posted beside the entrance.",
+       "exits": {
+         "south": { "target": "town_square", "description": "Back to the Town Square" },
+         "enter": { "target": "town_hall_main", "description": "Enter the Town Hall" }
+       },
+       "items": [],
+       "npcs": ["town_guard_2"],
+       "interactables": {
+           "noticeboard": {
+               "look": "The noticeboard has several postings: 'Rat problem in cellar - see Mayor', 'Lost cat - reward!', 'Blacksmith seeking apprentice'."
+           }
+       }
+    }
+    // ... more areas like inn, shops, dungeons, wilderness etc.
+  },
+
+  "items": {
+    "rusty_sword": {
+      "name": "Rusty Sword",
+      "description": "An old sword, pitted with rust. Better than nothing.",
+      "type": "weapon",
+      "properties": [ "takeable", "equipable" ],
+      "equip_slot": "weapon",
+      "stats_modifier": { "attack": 2 },
+      "weight": 5,
+      "value": 3
+    },
+    "bread": {
+      "name": "Loaf of Bread",
+      "description": "A simple loaf of bread. Looks edible.",
+      "type": "consumable",
+      "properties": [ "takeable", "usable", "edible" ],
+      "use_effect": { "type": "heal", "amount": 10 },
+      "weight": 1,
+      "value": 1
+    },
+    "discarded_leaflet": {
+        "name": "Discarded Leaflet",
+        "description": "A crumpled piece of paper.",
+        "type": "readable",
+        "properties": [ "takeable", "usable" ],
+        "use_effect": { "type": "read", "text": "It reads: 'BEWARE! Shadows gather beyond the town walls...'" },
+        "weight": 0.1,
+        "value": 0
+    },
+    "bent_coin": {
+        "name": "Bent Coin",
+        "description": "A worthless bent copper coin.",
+        "type": "junk",
+        "properties": [ "takeable" ],
+        "weight": 0.2,
+        "value": 0
+    },
+    "shop_key": {
+        "name": "Small Iron Key",
+        "description": "A small key, possibly for a shop door.",
+        "type": "key",
+        "properties": [ "takeable" ],
+        "key_id": "shop_key",
+        "weight": 0.1,
+        "value": 10
+    },
+    "rat_tail": {
+        "name": "Rat Tail",
+        "description": "A trophy from a vanquished giant rat.",
+        "type": "quest_item",
+        "properties": [ "takeable" ],
+        "quest_id": "rat_infestation",
+        "weight": 0.2,
+        "value": 0
+    }
+    // ... more items (potions, armor, keys, quest items)
+  },
+
+  "npcs": {
+    "mayor_haggard": {
+      "name": "Mayor Haggard",
+      "description": "A portly man with a worried expression, pacing near the fountain.",
+      "location": "town_square",
+      "dialogue": {
+        "greeting": [
+            { "condition_flag": "met_mayor", "condition_value": false, "text": "Oh, hello there! Haven't seen you around. Trouble brings you here, or just passing through?" },
+            { "default": "Ah, {player_name}, good to see you again. Any progress on our... little problem?" }
+        ],
+        "options": [
+          { "keyword": "trouble", "response": "Trouble? Yes, we have trouble! Rats! Giant ones, in the Town Hall cellar. Disgusting creatures. Could you help?", "triggers": [ { "type": "set_flag", "flag": "met_mayor", "value": true }, { "type": "offer_quest", "quest_id": "rat_infestation"} ] },
+          { "keyword": "help", "response": "If you could clear out those rats, the town would be very grateful. There's a small reward, of course.", "triggers": [ { "type": "offer_quest", "quest_id": "rat_infestation"} ]},
+          { "keyword": "rats", "condition_flag": "accepted_rat_quest", "condition_value": true, "response": "Have you dealt with those pesky rats yet?"},
+          { "keyword": "bye", "response": "Safe travels, adventurer.", "ends_conversation": true }
+        ],
+        "farewell": "Be careful out there."
+      },
+      "hostility": "friendly"
+    },
+    "town_guard_1": {
+        "name": "Town Guard",
+        "description": "A guard in worn leather armor, keeping an eye on the square.",
+        "location": "town_square",
+        "dialogue": {
+            "greeting": "Move along. Keep the peace.",
+            "options": [
+                { "keyword": "gate", "response": "The south gate? Locked by Mayor's orders. Too dangerous outside the walls lately." },
+                { "keyword": "mayor", "response": "Mayor Haggard? He's usually around the square or in the Town Hall." },
+                { "keyword": "bye", "response": "Hmph.", "ends_conversation": true }
+            ]
+        },
+        "hostility": "neutral"
+    },
+    "town_guard_2": {
+        "name": "Town Hall Guard",
+        "description": "A stern-looking guard stands rigidly by the Town Hall doors.",
+        "location": "town_hall_entrance",
+        "dialogue": {
+            "greeting": "State your business.",
+            "options": [
+                 { "keyword": "mayor", "response": "The Mayor is likely inside. Go on in, but cause no trouble." },
+                 { "keyword": "business", "response": "Just make it quick." },
+                 { "keyword": "bye", "response": "...", "ends_conversation": true }
+            ]
+        },
+       "hostility": "neutral"
+    }
+    // ... more NPCs (shopkeepers, quest givers, enemies that can talk)
+  },
+
+  "enemies": {
+      "giant_rat": {
+          "name": "Giant Rat",
+          "description": "A rodent of unusual size, with sharp teeth and beady eyes.",
+          "stats": {
+              "health": 25,
+              "max_health": 25,
+              "attack": 5,
+              "defense": 1,
+              "experience_reward": 10
+          },
+          "loot_table": [
+              { "item_id": "rat_tail", "chance": 0.75 }, // 75% chance to drop a tail
+              { "item_id": "bent_coin", "chance": 0.2 } // 20% chance to drop a coin
+          ],
+          "hostility": "hostile",
+          "behavior": "attack_on_sight"
+      }
+      // ... more enemy types
+  },
+
+  "quests": {
+    "rat_infestation": {
+      "name": "Rat Infestation",
+      "description": "Mayor Haggard is worried about giant rats in the Town Hall cellar. He wants someone to clear them out.",
+      "giver_npc": "mayor_haggard",
+      "status": "not_started", // Can be: not_started, active, completed, failed
+      "objectives": [
+        { "id": "kill_rats", "type": "kill", "target_enemy_id": "giant_rat", "count": 3, "current_count": 0, "description": "Defeat 3 Giant Rats" },
+        { "id": "collect_tails", "type": "collect", "target_item_id": "rat_tail", "count": 3, "current_count": 0, "description": "Collect 3 Rat Tails" },
+        { "id": "report_mayor", "type": "report", "target_npc_id": "mayor_haggard", "description": "Report back to Mayor Haggard" }
+      ],
+      "rewards": {
+        "experience": 50,
+        "items": [ { "item_id": "shop_key", "count": 1 } ],
+        "gold": 20,
+        "flags_set": [ { "flag": "main_gate_unlocked", "value": true } ]
+      },
+       "dialogue_start": "Thank you! Those rats are a menace. Bring me back 3 of their tails as proof, and I'll reward you handsomely. I'll also have the main gate unlocked for you.",
+       "dialogue_incomplete": "Still working on those rats? Be careful down there.",
+       "dialogue_complete": "You did it! Excellent work! Here is your reward, and as promised, I've ordered the main gate unlocked. The town is safer thanks to you."
+    }
+    // ... more quests
+  }
 }
