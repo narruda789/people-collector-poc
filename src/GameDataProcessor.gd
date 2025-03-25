@@ -1,7 +1,5 @@
 class_name GameDataProcessor
 
-# todo: make areas a singleton rather than passing chunks of it around
-# var areas
 var current_area = null
 var current_poi = null
 
@@ -20,7 +18,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
-		current_area = GameData.get_data()["alya's room"]
+		current_area = GameData.game_data()["alya's room"]
 		return render_area(current_area)
 
 	match action:
@@ -43,7 +41,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 		InstructionSet.MAP:
 			if instruction == null:
-				instruction = MapInstruction.new(GameData.get_data(), current_area)
+				instruction = MapInstruction.new(current_area)
 	
 		InstructionSet.NOT_FOUND:
 			if instruction == null:
