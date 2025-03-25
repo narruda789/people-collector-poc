@@ -10,7 +10,7 @@ func test_restart_instruction_resets_game_data():
 
     var instruction = RestartInstruction.new()
     instruction._game_data_path = "res://tests/resources/mockGameAreas.json"
-    var area_intro = instruction.execute()
+    var render = instruction.execute()
     
     assert_has(GameData.areas, "area 1")
     assert_eq(GameData.current_area, "area 1")
@@ -18,4 +18,5 @@ func test_restart_instruction_resets_game_data():
     assert_null(GameData.current_poi)
     assert_eq(Inventory.get_as_list(), [])
 
-    assert_eq(area_intro, "Welcome to Area 1!")
+    assert_string_contains(render, "Welcome to the game!")
+    assert_string_contains(render, "Welcome to Area 1!")

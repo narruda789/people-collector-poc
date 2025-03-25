@@ -1,5 +1,6 @@
 {
     "initial area" : "area 1",
+    "game intro" : "Welcome to the game!",
     "area 1" : {
         "map" : "map 1",
         "intro" : "Welcome to Area 1!"

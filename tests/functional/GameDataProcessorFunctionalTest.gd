@@ -11,6 +11,7 @@ func after_each():
 
 func test_process_restart_instruction_renders_intro():
     var render = _processor.process_action(InstructionSet.RESTART)
+    assert_string_contains(render, "Welcome to ALYA!")
     assert_string_contains(render, "It's finally here!")
 
 func test_process_help_instruction():
