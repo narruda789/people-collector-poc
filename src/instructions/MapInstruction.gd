@@ -1,6 +1,6 @@
 class_name MapInstruction extends Instruction
 
-func execute():
+func execute() -> String:
 	var game_data = GameData.areas
 	var current_area = GameData.current_area
 

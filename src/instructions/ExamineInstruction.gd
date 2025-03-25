@@ -5,7 +5,7 @@ var _poi = null
 func _init(poi):
 	_poi = poi
 
-func execute():
+func execute() -> String:
 	var game_data = GameData.areas
 	var current_area = GameData.current_area
 	
