@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://brmbxijk1pidd"]
+[gd_scene load_steps=5 format=3 uid="uid://brmbxijk1pidd"]
 
-[ext_resource type="FontFile" uid="uid://b7g05grqrea66" path="res://font/18371_regular.otf" id="1_uayp3"]
 [ext_resource type="Script" path="res://LineEdit.gd" id="2_8hy2q"]
 [ext_resource type="FontFile" uid="uid://1tfmy5lwbebg" path="res://font/18369_bold.otf" id="2_toixc"]
-[ext_resource type="FontFile" uid="uid://cnbl31cwvpy5e" path="res://font/18372_slanted.otf" id="3_j0nj2"]
 [ext_resource type="FontFile" uid="uid://c7fdnkeqegh4j" path="res://font/18370_bold-slanted.otf" id="4_6q7oa"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_albfg"]
@@ -48,9 +46,9 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.188235, 0.0980392, 0.203922, 1)
-theme_override_fonts/normal_font = ExtResource("1_uayp3")
+theme_override_fonts/normal_font = ExtResource("2_toixc")
 theme_override_fonts/bold_font = ExtResource("2_toixc")
-theme_override_fonts/italics_font = ExtResource("3_j0nj2")
+theme_override_fonts/italics_font = ExtResource("4_6q7oa")
 theme_override_fonts/bold_italics_font = ExtResource("4_6q7oa")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
@@ -64,7 +62,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Background/MarginContainer/Rows/PanelContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.188235, 0.0980392, 0.203922, 1)
-theme_override_fonts/font = ExtResource("1_uayp3")
+theme_override_fonts/font = ExtResource("2_toixc")
 theme_override_font_sizes/font_size = 30
 text = "> "
 horizontal_alignment = 1
@@ -76,7 +74,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.188235, 0.0980392, 0.203922, 1)
 theme_override_colors/caret_color = Color(0.188235, 0.0980392, 0.203922, 1)
 theme_override_constants/caret_width = 7
-theme_override_fonts/font = ExtResource("1_uayp3")
+theme_override_fonts/font = ExtResource("2_toixc")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxLine_albfg")
 theme_override_styles/focus = SubResource("StyleBoxLine_albfg")

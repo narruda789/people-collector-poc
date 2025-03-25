@@ -1,6 +1,6 @@
 {
 	"initial area" : "alya's room",
-	"game intro" : "[b]Welcome to ALYA![/b]\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nIf you get stuck, try typing 'help' to see a list of available commands.",
+	"game intro" : "[u]Welcome to ALYA![/u]\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nType 'help' to see a list of available commands.\n\nIf you get stuck, look out for highlighted [u]key terms[/u] and try interacting with them!",
 	"maps" : {
 		"alya's house" : {
 			"name" : "Alya's House",
@@ -13,8 +13,8 @@
 	"alya's room": {
 		"name" : "Alya's Room",
 		"map" : "alya's house",
-		"intro" : "It's finally here!\n\nToday's the day Alya sets off on her big adventure!\n\nShe wakes up in her bedroom. It's the same as always: the south-facing [b]window[/b], the tidy [b]desk[/b], the elaborate [b]doll house[/b] in the corner.\n\nBut today, something is different. Alya can't put her finger on it, but the familiar comforts of her room seem somehow livelier than usual.\n\nIt's a great day for adventure!\n\n (!) HINT: Use 'examine <target>' to explore Alya's room!",
-		"description" : "Everything in Alya's room is the same as always: the south-facing [b]window[/b], the tidy writing [b]desk[/b], the elaborate [b]doll house[/b] in the corner.",
+		"intro" : "It's finally here!\n\nToday's the day Alya sets off on her big adventure!\n\nShe wakes up in her bedroom. It's the same as always: the south-facing [u]window[/u], the tidy [u]desk[/u], the elaborate [u]doll house[/u] in the corner.\n\nBut today, something is different. Alya can't put her finger on it, but the familiar comforts of her room seem somehow livelier than usual.\n\nIt's a great day for adventure!\n\n (!) HINT: Use 'examine <target>' to explore Alya's room!",
+		"description" : "Everything in Alya's room is the same as always: the south-facing [u]window[/u], the tidy writing [u]desk[/u], the elaborate [u]doll house[/u] in the corner.",
 		"poi" : {
 			"window" : {
 				"description" : "The morning sunlight warms Alya's face as she peers out the window. She can see her family's apple orchard below... rows of budding trees stretching all the way to the surrounding forest.\n\nThe thought of apples makes Alya's stomach rumble. What's for breakfast?"
@@ -28,12 +28,12 @@
 					"stitch-o-matic" : {
 						"displayName" : "Stitch-o-Matic",
 						"description" : "Henry's latest invention: a clockwork gadget that can mend small tears in fabric. Handy!",
-						"beforePickup" : "There's something enclosed with Henry's latest letter, which reads: \"I hope you like my latest invention. I call it... the [b]Stitch-o-Matic[/b]! Just wind it up and let it rip! ...That is, [i]fix[/i] a rip. (It goes pretty fast, so be careful!)\""
+						"beforePickup" : "There's something enclosed with Henry's latest letter, which reads: \"I hope you like my latest invention. I call it... the [u]Stitch-o-Matic[/u]! Just wind it up and let it rip! ...That is, [i]fix[/i] a rip. (It goes pretty fast, so be careful!)\""
 					},
 					"letter" : {
 						"displayName" : "Letter",
 						"description" : "A letter to Henry. Don't forget to post it!",
-						"beforePickup" : "One of the [b]letters[/b] is Alya's response to Henry. She should post it before she leaves!"
+						"beforePickup" : "One of the [u]letters[/u] is Alya's response to Henry. She should post it before she leaves!"
 					}
 				}
 			}
@@ -42,6 +42,6 @@
 	"downstairs" : {
 		"name" : "Downstairs",
 		"map" : "alya's house",
-		"intro" : "Alya goes downstairs. In the front hall, she's met with some wonderful aromas: freshly brewed coffee, sizzling pork, and baked cinnamon apples.\n\nAlya follows her nose to the dining room. [b]Father[/b] is there, standing by the long table, looking expectant. He smiles when Alya comes in."
+		"intro" : "Alya goes downstairs. In the front hall, she's met with some wonderful aromas: freshly brewed coffee, sizzling pork, and baked cinnamon apples.\n\nAlya follows her nose to the dining room. Alya's father is there, standing by the long table, looking expectant. He smiles when Alya comes in."
 	}
 }
