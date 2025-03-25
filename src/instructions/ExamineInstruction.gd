@@ -1,18 +1,18 @@
 class_name ExamineInstruction extends Instruction
 
 var _poi = null
-var _area = null
 
-func _init(poi, area):
+func _init(poi):
 	_poi = poi
-	_area = area
 
 func execute():
+	var game_data = GameData.game_data()
+	var current_area = GameData.get_current_area()
 
-	if _poi not in _area.poi:
+	if _poi not in game_data[current_area].poi:
 		return "Can't examine that."
 
-	var poi = _area.poi[_poi]
+	var poi = game_data[current_area].poi[_poi]
 	var message = ""
 	message += poi.description
 
