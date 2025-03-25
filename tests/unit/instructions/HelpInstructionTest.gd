@@ -15,3 +15,9 @@ func test_help_instruction_contains_every_instruction():
 	assert_string_contains(message, "[lb]m[rb]ap")
 	assert_string_contains(message, "[lb]g[rb]o (to)")
 	assert_string_contains(message, "[lb]c[rb]ontinue")
+
+func test_help_instruction_explains_notation():
+	var instruction = HelpInstruction.new()
+	assert_string_contains(instruction.execute(), "<> = required target")
+	assert_string_contains(instruction.execute(), "[] = command shortcut")
+	assert_string_contains(instruction.execute(), "() = optional preposition")
