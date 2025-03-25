@@ -17,8 +17,6 @@ func execute():
 		var item_display_name = game_data[current_area].poi[current_poi].items[_item].displayName
 		Inventory.add(Item.new(_item, item_display_name))
 
-		# todo: the fact that this works means there's zero point in
-		#       getters and setters on GameData lol
 		game_data[current_area].poi[current_poi].items.erase(_item)
 		return "Alya picks up the %s." % item_display_name
 	return "Can't pick that up."

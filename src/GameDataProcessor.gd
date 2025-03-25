@@ -17,7 +17,6 @@ func process_action(action, target = null, instruction: Instruction = null):
 		_game_start = false
 		return GameData.areas[GameData.current_area]["intro"]
 
-	# todo: aha, we could abstract this to an "instruction executor"
 	match action:
 		InstructionSet.HELP:
 			if instruction == null:

@@ -63,7 +63,6 @@ func test_take_several_items_adds_to_inventory():
     instruction.execute()
     _assert_inventory(2, ["Bag of Marbles", "Pogo Stick"])
 
-# todo: make sure it's actually permanently removed!
 func test_take_item_removes_it_from_poi():
     GameData.current_poi = "locker"
     var instruction = TakeInstruction.new("gym socks")
