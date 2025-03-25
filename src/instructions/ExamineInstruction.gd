@@ -8,19 +8,19 @@ func _init(poi):
 func execute():
 	var game_data = GameData.areas
 	var current_area = GameData.current_area
+	
+	if "poi" in game_data[current_area] and _poi in game_data[current_area].poi:
+		var poi = game_data[current_area].poi[_poi]
+		var message = ""
+		message += poi.description
 
-	if _poi not in game_data[current_area].poi:
-		return "Can't examine that."
+		if "items" in poi:
+			for item in poi.items:
+				message += "\n"
+				message += "\n%s" % poi.items[item].beforePickup
 
-	var poi = game_data[current_area].poi[_poi]
-	var message = ""
-	message += poi.description
+		GameData.current_poi = _poi
 
-	if "items" in poi:
-		for item in poi.items:
-			message += "\n"
-			message += "\n%s" % poi.items[item].beforePickup
+		return message
 
-	GameData.current_poi = _poi
-
-	return message
+	return "Can't examine that."
