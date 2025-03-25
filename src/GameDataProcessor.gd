@@ -1,27 +1,23 @@
 class_name GameDataProcessor
 
-var current_area = null
+var _game_start = true
 
 var _game_data_path = "res://data/alya.json"
 
 func _init():
-	GameData.initialize_from_json(_game_data_path)
-	Inventory.clear()
+	_initialize()
 
 func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.RESTART:
-		current_area = null
-		# todo: GameData should know how to reset itself
-		GameData.current_area = null
-		GameData.current_poi = null
-		Inventory.clear()
+		_game_start = true
 
 	# If the current area is empty then start with the initial area.
-	if current_area == null:
-		GameData.initialize_from_json(_game_data_path)
-		current_area = GameData.areas[GameData.current_area]
-		return render_area(current_area)
+	if _game_start:
+		_initialize()
+		_game_start = false
+		return GameData.areas[GameData.current_area]["intro"]
 
+	# todo: aha, we could abstract this to an "instruction executor"
 	match action:
 		InstructionSet.HELP:
 			if instruction == null:
@@ -50,5 +46,6 @@ func process_action(action, target = null, instruction: Instruction = null):
 	# todo: handle null instruction case?
 	return instruction.execute()
 
-func render_area(area):
-	return area["intro"]
+func _initialize():
+	GameData.initialize_from_json(_game_data_path)
+	Inventory.clear()
