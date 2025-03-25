@@ -4,6 +4,7 @@ func before_each():
     Inventory.clear()
     GameData.current_area = "play room"
     GameData.current_poi = "floor"
+    GameData.next_text = []
     GameData.areas = {
         "play room" : {
             "poi" : {

@@ -1,6 +1,6 @@
 class_name HelpInstruction extends Instruction
 
-func execute() -> String:
+func _execute() -> String:
     var helpText = "HELP:"
     helpText += "\n  examine <target>     | Get more information about a target"
     helpText += "\n  take <item>          | Pick up an item"

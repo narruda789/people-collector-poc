@@ -9,6 +9,10 @@ func after_each():
     TestUtilities.clear_game_data()
     Inventory.clear()
 
+func _restart_and_continue():
+    _processor.process_action(InstructionSet.RESTART)
+    _processor.process_action(InstructionSet.CONTINUE)
+
 func test_process_restart_continue_renders_intro():
     var restart_render = _processor.process_action(InstructionSet.RESTART)
     assert_string_contains(restart_render, "Welcome to ALYA!")
@@ -25,7 +29,7 @@ func test_process_not_found_instruction():
     assert_eq(render, "Can't do that!")
 
 func test_examine_desk_take_letter_view_inventory_restart():
-    _processor.process_action(InstructionSet.RESTART)
+    _restart_and_continue()
 
     var examine_render = _processor.process_action(InstructionSet.EXAMINE, "desk")
     assert_string_contains(examine_render, "A stack of letters, all from Henry")
@@ -39,7 +43,7 @@ func test_examine_desk_take_letter_view_inventory_restart():
     var take_render_already_took = _processor.process_action(InstructionSet.TAKE, "letter")
     assert_eq(take_render_already_took, "Can't pick that up.")
 
-    _processor.process_action(InstructionSet.RESTART)
+    _restart_and_continue()
 
     var take_render_no_poi = _processor.process_action(InstructionSet.TAKE, "letter")
     assert_eq(take_render_no_poi, "Can't pick that up.")
@@ -48,7 +52,7 @@ func test_examine_desk_take_letter_view_inventory_restart():
     assert_string_contains(empty_inventory_render, "(!) You aren't carrying anything.")
 
 func test_go_downstairs_view_map_restart():
-    _processor.process_action(InstructionSet.RESTART)
+    _restart_and_continue()
 
     var go_render = _processor.process_action(InstructionSet.GO, "downstairs")
     assert_string_contains(go_render, "Alya goes downstairs.")
@@ -57,7 +61,7 @@ func test_go_downstairs_view_map_restart():
     assert_string_contains(map_render_downstairs, "Alya's Room")
     assert_string_contains(map_render_downstairs, "Downstairs (Alya is here!)")
 
-    _processor.process_action(InstructionSet.RESTART)
+    _restart_and_continue()
     
     var map_render_in_room = _processor.process_action(InstructionSet.MAP)
     assert_string_contains(map_render_in_room, "Alya's Room (Alya is here!)")
