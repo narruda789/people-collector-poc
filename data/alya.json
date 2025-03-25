@@ -40,6 +40,6 @@
 	"downstairs" : {
 		"name" : "Downstairs",
 		"map" : "alya's house",
-		"intro" : "Went downstairs!"
+		"intro" : "Alya goes downstairs. In the front hall, she's met with some wonderful aromas: freshly brewed coffee, sizzling pork, and baked cinnamon apples.\n\nAlya follows her nose to the dining room. [b]Father[/b] is there, standing by the long table, looking expectant. He smiles when Alya comes in."
 	}
 }
