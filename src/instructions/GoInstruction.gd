@@ -5,7 +5,7 @@ var _new_area = null
 func _init(area):
     _new_area = area
 
-func execute():
+func execute() -> String:
     if _new_area == GameData.current_area:
         return "Already there."
 

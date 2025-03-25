@@ -1,4 +1,4 @@
 class_name InventoryInstruction extends Instruction
 
-func execute():
+func execute() -> String:
     return Inventory.render()
