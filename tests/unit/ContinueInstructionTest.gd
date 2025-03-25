@@ -20,4 +20,4 @@ func test_subsequent_continue_returns_subsequent_next_text():
 func test_continue_returns_nothing_if_no_next_text():
     GameData.next_text = []
     var instruction = ContinueInstruction.new()
-    assert_eq(instruction.execute(), " (!) Nothing more to say!")
+    assert_eq(instruction.execute(), "Nothing more to say.")

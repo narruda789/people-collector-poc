@@ -52,12 +52,12 @@ func test_go_sets_current_area():
 
 func test_cannot_go_off_map():
     var instruction = GoInstruction.new("frandor")
-    assert_eq(instruction.execute(), " (!) Can't go there!")
+    assert_eq(instruction.execute(), "Can't go there.")
     assert_eq(GameData.current_area, "library")
 
 func test_cannot_go_to_current_area():
     var instruction = GoInstruction.new("library")
-    assert_eq(instruction.execute(), " (!) Already there!")
+    assert_eq(instruction.execute(), "Already there.")
 
 func test_go_clears_current_poi():
     GameData.current_poi = "some poi"

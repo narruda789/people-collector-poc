@@ -34,6 +34,9 @@ var _mock_game_data = {
 				}
 			}
 		}
+	},
+	"submarine" : {
+
 	}
 }
 
@@ -54,6 +57,12 @@ func test_examine_non_existent_poi():
 
 func test_examine_null_poi():
 	var instruction = ExamineInstruction.new(null)
+	assert_eq(instruction.execute(), "Can't examine that.")
+	assert_eq(GameData.current_poi, "prior poi")
+
+func test_examine_when_no_pois():
+	GameData.current_area = "submarine"
+	var instruction = ExamineInstruction.new("periscope")
 	assert_eq(instruction.execute(), "Can't examine that.")
 	assert_eq(GameData.current_poi, "prior poi")
 
