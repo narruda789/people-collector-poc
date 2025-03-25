@@ -1,6 +1,9 @@
 class_name MapInstruction extends Instruction
 
-func execute() -> String:
+func _init():
+	_can_execute_before_continue = false
+
+func _execute() -> String:
 	var game_data = GameData.areas
 	var current_area = GameData.current_area
 

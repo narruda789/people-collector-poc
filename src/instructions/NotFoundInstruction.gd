@@ -1,4 +1,4 @@
 class_name NotFoundInstruction extends Instruction
 
-func execute() -> String:
+func _execute() -> String:
     return "Can't do that!"

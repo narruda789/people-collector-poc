@@ -3,9 +3,10 @@ class_name ExamineInstruction extends Instruction
 var _poi = null
 
 func _init(poi):
+	_can_execute_before_continue = false
 	_poi = poi
 
-func execute() -> String:
+func _execute() -> String:
 	var game_data = GameData.areas
 	var current_area = GameData.current_area
 	
