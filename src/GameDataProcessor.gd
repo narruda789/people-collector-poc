@@ -12,17 +12,20 @@ func process_action(action, target = null, instruction: Instruction = null):
 			InstructionSet.HELP:
 				instruction = HelpInstruction.new()
 
-			InstructionSet.EXAMINE:
-				instruction = ExamineInstruction.new(target)
-
-			InstructionSet.TAKE:
-				instruction = TakeInstruction.new(target)
-
 			InstructionSet.INVENTORY:
 				instruction = InventoryInstruction.new()
 
 			InstructionSet.MAP:
 				instruction = MapInstruction.new()
+
+			InstructionSet.STATS:
+				instruction = StatsInstruction.new()
+
+			InstructionSet.EXAMINE:
+				instruction = ExamineInstruction.new(target)
+
+			InstructionSet.TAKE:
+				instruction = TakeInstruction.new(target)
 
 			InstructionSet.GO:
 				instruction = GoInstruction.new(target)

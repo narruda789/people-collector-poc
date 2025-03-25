@@ -21,6 +21,10 @@ func test_instructions_that_cannot_execute_before_continue():
         {
             "instruction" : GoInstruction.new("thing"),
             "default_message" : "Can't go there."
+        },
+        {
+            "instruction" : StatsInstruction.new(),
+            "default_message" : "PARTY STATS:"
         }
     ]
 

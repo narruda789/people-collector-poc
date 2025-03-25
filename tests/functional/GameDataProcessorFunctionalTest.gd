@@ -28,6 +28,12 @@ func test_process_not_found_instruction():
     var render = _processor.process_action(InstructionSet.NOT_FOUND)
     assert_eq(render, "Can't do that!")
 
+func test_process_stats_instruction():
+    _restart_and_continue()
+    
+    var render = _processor.process_action(InstructionSet.STATS)
+    assert_string_contains(render, "PARTY STATS")
+
 func test_examine_desk_take_letter_view_inventory_restart():
     _restart_and_continue()
 
