@@ -5,21 +5,21 @@ var current_area = null
 var _game_data_path = "res://data/alya.json"
 
 func _init():
-	GameData.load_from_json(_game_data_path)
+	GameData.initialize_from_json(_game_data_path)
 	Inventory.clear()
 
 func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.RESTART:
 		current_area = null
 		# todo: GameData should know how to reset itself
-		GameData.set_current_area(null)
-		GameData.set_current_poi(null)
+		GameData.current_area = null
+		GameData.current_poi = null
 		Inventory.clear()
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
-		GameData.load_from_json(_game_data_path)
-		current_area = GameData.game_data()[GameData.get_current_area()]
+		GameData.initialize_from_json(_game_data_path)
+		current_area = GameData.areas[GameData.current_area]
 		return render_area(current_area)
 
 	match action:

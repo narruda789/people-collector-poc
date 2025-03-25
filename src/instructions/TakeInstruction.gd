@@ -6,9 +6,9 @@ func _init(item):
 	_item = item
 
 func execute():
-	var game_data = GameData.game_data()
-	var current_poi = GameData.get_current_poi()
-	var current_area = GameData.get_current_area()
+	var game_data = GameData.areas
+	var current_poi = GameData.current_poi
+	var current_area = GameData.current_area
 
 	if "poi" in game_data[current_area] \
 				and current_poi in game_data[current_area].poi \
