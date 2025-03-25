@@ -31,7 +31,12 @@ func get_target():
 
 func _set_target_and_return_instruction(text, first_word_break, instruction):
 	if first_word_break == -1:
-		# transitive command with no target
 		return InstructionSet.NOT_FOUND
+		
 	_target = text.substr(first_word_break, -1).strip_edges()
+
+	var preposition_break = _target.find(" ")
+	if _target.substr(0, preposition_break) == "to":
+		_target = _target.substr(3, -1).strip_edges()
+
 	return instruction

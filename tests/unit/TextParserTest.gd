@@ -101,6 +101,18 @@ func test_go_is_parsed_correctly():
 		{
 			"command" : "gO oVeR tHeRe",
 			"expected_target" : "over there"
+		},
+		{
+			"command" : "go to outer space",
+			"expected_target" : "outer space"
+		},
+		{
+			"command" : "go incognito mode",
+			"expected_target" : "incognito mode" 
+		},
+		{
+			"command" : "go toward the light",
+			"expected_target" : "toward the light"
 		}
 	]
 	for input_option in input:
