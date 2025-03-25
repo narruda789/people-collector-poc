@@ -17,3 +17,5 @@ const INVENTORY = "inventory"
 const MAP = "map"
 
 const GO = "go"
+
+const STATS = "stats"
