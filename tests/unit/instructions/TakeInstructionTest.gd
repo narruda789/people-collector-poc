@@ -4,6 +4,7 @@ var _mock_area = null
 
 func before_each():
     Inventory.clear()
+    GameData.set_current_poi("poi from another area")
     _mock_area = {
         "poi" : {
             "locker" : {
@@ -17,9 +18,6 @@ func before_each():
         "items" : {
             "spoon" : {
                 "displayName" : "Spoon"
-            },
-            "potato chips" : {
-                "displayName" : "Potato Chips"
             },
             "hourglass" : {
                 "displayName" : "Hourglass"
@@ -36,13 +34,14 @@ func before_each():
         }
     }
 
-func test_message_take_spoon():
+func test_take_spoon():
     var instruction = TakeInstruction.new("spoon", _mock_area)
     assert_eq(instruction.execute(), "Alya picks up the Spoon.")
 
-func test_message_take_potato_chips():
-    var instruction = TakeInstruction.new("potato chips", _mock_area)
-    assert_eq(instruction.execute(), "Alya picks up the Potato Chips.")
+func test_take_spoon_when_current_poi_null():
+    GameData.set_current_poi(null)
+    var instruction = TakeInstruction.new("spoon", _mock_area)
+    assert_eq(instruction.execute(), "Alya picks up the Spoon.")
 
 func test_take_one_item_adds_to_inventory():
     var instruction = TakeInstruction.new("water bottle", _mock_area)
@@ -56,7 +55,7 @@ func test_take_several_items_adds_to_inventory():
     instruction.execute()
     _assert_inventory(2, ["Bag of Marbles", "Pogo Stick"])
 
-func test_take_non_existent_item():
+func test_take_item_not_in_area():
     var instruction = TakeInstruction.new("orca whale", _mock_area)
     assert_eq(instruction.execute(), "Can't pick that up.")
 
@@ -72,7 +71,8 @@ func test_take_item_removes_it_from_area():
     assert_does_not_have(_mock_area["items"], "hourglass")
 
 func test_take_item_removes_it_from_poi():
-    var instruction = TakeInstruction.new("gym socks", _mock_area, "locker")
+    GameData.set_current_poi("locker")
+    var instruction = TakeInstruction.new("gym socks", _mock_area)
     instruction.execute()
     _assert_inventory(1, ["Gym Socks"])
     assert_does_not_have(_mock_area.poi["locker"], "gym socks")

@@ -18,3 +18,7 @@ func test_set_game_data_by_key():
     }
     GameData.set_game_data_by_key("fruit", "kiwi")
     assert_eq(GameData.game_data()["fruit"], "kiwi")
+
+func test_set_current_poi():
+    GameData.set_current_poi("refrigerator")
+    assert_eq(GameData.get_current_poi(), "refrigerator")
