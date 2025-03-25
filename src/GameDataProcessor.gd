@@ -11,13 +11,15 @@ func _init():
 func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.RESTART:
 		current_area = null
+		# todo: GameData should know how to reset itself
+		GameData.set_current_area(null)
 		GameData.set_current_poi(null)
 		Inventory.clear()
-		GameData.load_from_json(_game_data_path)
 
 	# If the current area is empty then start with the initial area.
 	if current_area == null:
-		current_area = GameData.game_data()["alya's room"]
+		GameData.load_from_json(_game_data_path)
+		current_area = GameData.game_data()[GameData.get_current_area()]
 		return render_area(current_area)
 
 	match action:
@@ -27,11 +29,11 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 		InstructionSet.EXAMINE:
 			if instruction == null:
-				instruction = ExamineInstruction.new(target, current_area)
+				instruction = ExamineInstruction.new(target)
 
 		InstructionSet.TAKE:
 			if instruction == null:
-				instruction = TakeInstruction.new(target, current_area)
+				instruction = TakeInstruction.new(target)
 
 		InstructionSet.INVENTORY:
 			if instruction == null:
@@ -39,7 +41,7 @@ func process_action(action, target = null, instruction: Instruction = null):
 
 		InstructionSet.MAP:
 			if instruction == null:
-				instruction = MapInstruction.new(current_area)
+				instruction = MapInstruction.new()
 	
 		InstructionSet.NOT_FOUND:
 			if instruction == null:

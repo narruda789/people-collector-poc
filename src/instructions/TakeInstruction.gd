@@ -1,22 +1,24 @@
 class_name TakeInstruction extends Instruction
 
 var _item = null
-var _area = null
 
-func _init(item, area):
+func _init(item):
 	_item = item
-	_area = area
 
 func execute():
+	var game_data = GameData.game_data()
 	var current_poi = GameData.get_current_poi()
-	if "poi" in _area and current_poi in _area.poi:
-		return _take_item(_area.poi[current_poi])
-	return _take_item(_area)
+	var current_area = GameData.get_current_area()
 
-func _take_item(scope):
-	if "items" in scope and _item in scope.items:
-		var item_display_name = scope.items[_item].displayName
+	if "poi" in game_data[current_area] \
+				and current_poi in game_data[current_area].poi \
+				and "items" in game_data[current_area].poi[current_poi] \
+				and _item in game_data[current_area].poi[current_poi].items:
+		var item_display_name = game_data[current_area].poi[current_poi].items[_item].displayName
 		Inventory.add(Item.new(_item, item_display_name))
-		scope.items.erase(_item)
+
+		# todo: the fact that this works means there's zero point in
+		#       getters and setters on GameData lol
+		game_data[current_area].poi[current_poi].items.erase(_item)
 		return "Alya picks up the %s." % item_display_name
 	return "Can't pick that up."

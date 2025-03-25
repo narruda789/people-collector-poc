@@ -42,31 +42,43 @@ func before_each():
     GameData.set_game_data(_mock_areas)
 
 func test_map_shows_map_name():
-    var instruction = MapInstruction.new(_mock_areas["frita batidos"])
-    var map = instruction.execute()
-    assert_string_contains(map, "ANN ARBOR")
+    GameData.set_current_area("frita batidos")
+    var instruction = MapInstruction.new()
+    assert_string_contains(instruction.execute(), "ANN ARBOR")
 
 func test_map_of_ann_arbor():
-    var instruction = MapInstruction.new(_mock_areas["library"])
+    GameData.set_current_area("library")
+    var instruction = MapInstruction.new()
     var map = instruction.execute()
     assert_string_contains(map, "Library")
     assert_string_contains(map, "Stadium")
     assert_string_contains(map, "Frita Batidos")
 
 func test_map_of_lansing():
-    var instruction = MapInstruction.new(_mock_areas["frandor"])
-    var map = instruction.execute()
-    assert_string_contains(map, "Frandor")
+    GameData.set_current_area("frandor")
+    var instruction = MapInstruction.new()
+    assert_string_contains(instruction.execute(), "Frandor")
 
 func test_map_shows_current_location():
-    var instruction = MapInstruction.new(_mock_areas["stadium"])
+    GameData.set_current_area("stadium")
+    var instruction = MapInstruction.new()
     var map = instruction.execute()
     assert_string_contains(map, "  Library")
     assert_string_contains(map, "  Stadium (Alya is here!")
     assert_string_contains(map, "  Frita Batidos")
 
 func test_no_map_available():
-    var instruction = MapInstruction.new(_mock_areas["mystery spot"])
+    GameData.set_current_area("mystery spot")
+    var instruction = MapInstruction.new()
+    var map = instruction.execute()
+    assert_string_contains(map, "???:")
+    assert_string_contains(map, " (!) No map available!")
+
+# todo: This feels like the wrong place to handle this case,
+#       but at least it's handled.
+func test_current_area_not_found():
+    GameData.set_current_area("some other area")
+    var instruction = MapInstruction.new()
     var map = instruction.execute()
     assert_string_contains(map, "???:")
     assert_string_contains(map, " (!) No map available!")
