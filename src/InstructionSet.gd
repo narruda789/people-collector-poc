@@ -13,3 +13,5 @@ const TAKE = "take"
 const INVENTORY = "inventory"
 
 const MAP = "map"
+
+const GO = "go"

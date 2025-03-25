@@ -89,3 +89,20 @@ func test_map_is_parsed_correctly():
 	]
 	for input_option in input:
 		assert_eq(text_parser.parse(input_option), InstructionSet.MAP)
+
+func test_go_is_parsed_correctly():
+	assert_eq(text_parser.parse("go"), InstructionSet.NOT_FOUND)
+
+	var input = [
+		{
+			"command" : "go wild",
+			"expected_target" : "wild"
+		},
+		{
+			"command" : "gO oVeR tHeRe",
+			"expected_target" : "over there"
+		}
+	]
+	for input_option in input:
+		assert_eq(text_parser.parse(input_option.command), InstructionSet.GO)
+		assert_eq(text_parser.get_target(), input_option.expected_target)

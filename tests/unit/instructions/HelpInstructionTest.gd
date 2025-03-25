@@ -13,3 +13,4 @@ func test_help_instruction_contains_every_instruction():
 	assert_string_contains(message, "help")
 	assert_string_contains(message, "[lb]i[rb]nventory")
 	assert_string_contains(message, "[lb]m[rb]ap")
+	assert_string_contains(message, "[lb]g[rb]o")
