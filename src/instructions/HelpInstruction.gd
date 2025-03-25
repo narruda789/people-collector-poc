@@ -11,5 +11,10 @@ func execute():
     helpText += "\n  [lb]c[rb]ontinue           | Advance text when you see '...'"
     helpText += "\n  restart              | Restart game from the beginning"
     helpText += "\n  help                 | Open this help menu"
+    helpText += "\n"
+    helpText += "\nCOMMAND NOTATION:"
+    helpText += "\n  <> = required target"
+    helpText += "\n  [] = command shortcut"
+    helpText += "\n  () = optional preposition"
 
     return helpText

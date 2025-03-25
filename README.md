@@ -21,7 +21,7 @@ Some commands can be executed by typing the first letter of the command word. Th
 
 Some commands can be executed with or without an optional preposition. This is indicated by `(` `)` parentheses. For example, to go to Alya's room, you can type `go alya's room` or `go to alya's room`.
 
-**Instruction help (also viewable in-game):**
+**Instruction Reference (viewable in-game by typing `help`):**
 ```
 HELP:
   examine <target>     | Get more information about a target
@@ -30,6 +30,7 @@ HELP:
   [m]ap                | View a map of the area
   [g]o (to) <location> | Go to a location on the map
                        |
+  [c]ontinue           | Advance text when you see '...'
   restart              | Restart game from the beginning 
   help                 | Open this help menu
 ```
