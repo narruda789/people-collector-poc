@@ -10,6 +10,7 @@ func execute():
         return " (!) Already there!"
 
     if _new_area in GameData.areas.maps[GameData.current_map]["areas"]:
+        GameData.current_poi = null
         GameData.current_area = _new_area
         return GameData.areas[_new_area]["intro"]
         

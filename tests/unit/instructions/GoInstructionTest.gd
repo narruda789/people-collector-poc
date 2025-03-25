@@ -58,3 +58,15 @@ func test_cannot_go_off_map():
 func test_cannot_go_to_current_area():
     var instruction = GoInstruction.new("library")
     assert_eq(instruction.execute(), " (!) Already there!")
+
+func test_go_clears_current_poi():
+    GameData.current_poi = "some poi"
+    var instruction = GoInstruction.new("frita batidos")
+    instruction.execute()
+    assert_null(GameData.current_poi)
+
+func test_cannot_go_does_not_clear_current_poi():
+    GameData.current_poi = "some poi"
+    var instruction = GoInstruction.new("frandor")
+    instruction.execute()
+    assert_eq(GameData.current_poi, "some poi")
