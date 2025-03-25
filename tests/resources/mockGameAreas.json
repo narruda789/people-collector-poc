@@ -1,0 +1,10 @@
+{
+    "initial area" : "area 1",
+    "area 1" : {
+        "map" : "map 1",
+        "intro" : "Welcome to Area 1!"
+    },
+    "area 2" : {
+        "map" : "map 1"
+    }
+}

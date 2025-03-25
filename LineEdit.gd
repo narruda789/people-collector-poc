@@ -9,9 +9,10 @@ func _ready():
 	gameText = get_parent().get_parent().get_node("GameText")
 	text_parser = TextParser.new()
 	game_data_processor = GameDataProcessor.new()
-	gameText.append_text(game_data_processor.process_action('') + "\n\n")
+	gameText.append_text(game_data_processor.process_action(InstructionSet.RESTART) + "\n\n")
 	self.grab_focus()
 
+# todo: can we get some tests in here?
 func _on_text_submitted(new_text):
 	if (new_text.is_empty()):
 		return
