@@ -15,19 +15,23 @@ You control Alya, a teenage girl in a fantasy/steampunk world. Use text commands
 
 To execute a command, type it into the prompt and hit enter.
 
-Some commands take a parameter, which can be one or more words specifying the target of the command. This is indicated by `<` `>` angle brackets in the list below and in the in-game `help` menu. For example, to examine a pickle jar, type `examine pickle jar`.
+Some commands require a parameter, which can be one or more words specifying the target of the command. This is indicated by `<` `>` angle brackets in the list below and in the in-game `help` menu. For example, to examine a pickle jar, type `examine pickle jar`.
 
-Some commands can be executed by typing a shortcut (usually the first letter of the command word). This is indicated by `[` `]` square brackets. For example, to view Alya's inventory, you can type either the full word `inventory` *or* simply the letter `i`.
+Some commands can be executed by typing the first letter of the command word. This is indicated by `[` `]` square brackets. For example, to view Alya's inventory, you can type either the full word `inventory` *or* simply the letter `i`.
+
+Some commands can be executed with or without an optional preposition. This is indicated by `(` `)` parentheses. For example, to go to Alya's room, you can type `go alya's room` or `go to alya's room`.
 
 **Instruction help (also viewable in-game):**
 ```
 HELP:
-  examine <item> | Get more information about an item
-  get <item>     | Pick up an item
-  [i]nventory    | See all the items you're carrying
-
-  reset          | Restart game from the beginning 
-  help           | Open this help menu
+  examine <target>     | Get more information about a target
+  take <item>          | Pick up an item
+  [i]nventory          | See all the items Alya is carrying
+  [m]ap                | View a map of the area
+  [g]o (to) <location> | Go to a location on the map
+                       |
+  restart              | Restart game from the beginning 
+  help                 | Open this help menu
 ```
 
 ### (Extremely) Limited Language Model
