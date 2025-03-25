@@ -21,4 +21,6 @@ func execute():
 			message += "\n"
 			message += "\n%s" % poi.items[item].beforePickup
 
+	GameData.set_current_poi(_poi)
+
 	return message

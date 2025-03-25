@@ -2,16 +2,15 @@ class_name TakeInstruction extends Instruction
 
 var _item = null
 var _area = null
-var _poi = null
 
-func _init(item, area, poi=null):
+func _init(item, area):
 	_item = item
 	_area = area
-	_poi = poi
 
 func execute():
-	if _poi != null:
-		return _take_item(_area.poi[_poi])
+	var current_poi = GameData.get_current_poi()
+	if "poi" in _area and current_poi in _area.poi:
+		return _take_item(_area.poi[current_poi])
 	return _take_item(_area)
 
 func _take_item(scope):

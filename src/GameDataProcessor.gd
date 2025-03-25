@@ -1,7 +1,6 @@
 class_name GameDataProcessor
 
 var current_area = null
-var current_poi = null
 
 var _game_data_path = "res://data/alya.json"
 
@@ -12,7 +11,7 @@ func _init():
 func process_action(action, target = null, instruction: Instruction = null):
 	if action == InstructionSet.RESTART:
 		current_area = null
-		current_poi = null
+		GameData.set_current_poi(null)
 		Inventory.clear()
 		GameData.load_from_json(_game_data_path)
 
@@ -29,11 +28,10 @@ func process_action(action, target = null, instruction: Instruction = null):
 		InstructionSet.EXAMINE:
 			if instruction == null:
 				instruction = ExamineInstruction.new(target, current_area)
-			current_poi = target
 
 		InstructionSet.TAKE:
 			if instruction == null:
-				instruction = TakeInstruction.new(target, current_area, current_poi)
+				instruction = TakeInstruction.new(target, current_area)
 
 		InstructionSet.INVENTORY:
 			if instruction == null:
