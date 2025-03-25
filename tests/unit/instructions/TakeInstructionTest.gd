@@ -2,9 +2,9 @@ extends GutTest
 
 func before_each():
     Inventory.clear()
-    GameData.set_current_area("play room")
-    GameData.set_current_poi("floor")
-    GameData.set_game_data({
+    GameData.current_area = "play room"
+    GameData.current_poi = "floor"
+    GameData.areas = {
         "play room" : {
             "poi" : {
                 "locker" : {
@@ -35,19 +35,19 @@ func before_each():
                 }
             }
         }
-    })
+    }
 
 func test_take_spoon():
     var instruction = TakeInstruction.new("spoon")
     assert_eq(instruction.execute(), "Alya picks up the Spoon.")
 
 func test_take_spoon_when_item_not_in_current_poi():
-    GameData.set_current_poi("locker")
+    GameData.current_poi = "locker"
     var instruction = TakeInstruction.new("spoon")
     assert_eq(instruction.execute(), "Can't pick that up.")
 
 func test_take_spoon_when_current_poi_null():
-    GameData.set_current_poi(null)
+    GameData.current_poi = null
     var instruction = TakeInstruction.new("spoon")
     assert_eq(instruction.execute(), "Can't pick that up.")
 
@@ -65,11 +65,11 @@ func test_take_several_items_adds_to_inventory():
 
 # todo: make sure it's actually permanently removed!
 func test_take_item_removes_it_from_poi():
-    GameData.set_current_poi("locker")
+    GameData.current_poi = "locker"
     var instruction = TakeInstruction.new("gym socks")
     instruction.execute()
     _assert_inventory(1, ["Gym Socks"])
-    assert_does_not_have(GameData.game_data()["play room"].poi["locker"], "gym socks")
+    assert_does_not_have(GameData.areas["play room"].poi["locker"], "gym socks")
 
 func _assert_inventory(expected_size: int = 0, expected_item_names: Array = []):
     var inventory_items = Inventory.get_as_list()

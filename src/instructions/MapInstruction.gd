@@ -1,8 +1,8 @@
 class_name MapInstruction extends Instruction
 
 func execute():
-	var game_data = GameData.game_data()
-	var current_area = GameData.get_current_area()
+	var game_data = GameData.areas
+	var current_area = GameData.current_area
 
 	if current_area in game_data and "map" in game_data[current_area]:
 			var map_name = game_data[current_area].map
