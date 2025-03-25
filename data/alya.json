@@ -1,5 +1,6 @@
 {
 	"initial area" : "alya's room",
+	"game intro" : "[b]Welcome to ALYA![/b]\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nIf you get stuck, try typing 'help' to see a list of available commands.",
 	"maps" : {
 		"alya's house" : {
 			"name" : "Alya's House",
