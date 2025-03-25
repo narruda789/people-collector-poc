@@ -23,6 +23,8 @@ func parse(text):
 			return InstructionSet.HELP
 		"restart":
 			return InstructionSet.RESTART
+		"continue", "c":
+			return InstructionSet.CONTINUE
 
 	return InstructionSet.NOT_FOUND
 

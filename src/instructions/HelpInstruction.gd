@@ -8,6 +8,7 @@ func execute():
     helpText += "\n  [lb]m[rb]ap                | View a map of the area"
     helpText += "\n  [lb]g[rb]o (to) <location> | Go to a location on the map"
     helpText += "\n                       |"
+    helpText += "\n  [lb]c[rb]ontinue           | Advance text when you see '...'"
     helpText += "\n  restart              | Restart game from the beginning"
     helpText += "\n  help                 | Open this help menu"
 

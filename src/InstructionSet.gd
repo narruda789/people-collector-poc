@@ -6,6 +6,8 @@ const HELP = "help"
 
 const RESTART = "restart"
 
+const CONTINUE = "continue"
+
 const EXAMINE = "examine"
 
 const TAKE = "take"

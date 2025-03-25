@@ -9,7 +9,7 @@ func _ready():
 	gameText = get_parent().get_parent().get_node("GameText")
 	text_parser = TextParser.new()
 	game_data_processor = GameDataProcessor.new()
-	gameText.append_text(game_data_processor.process_action(InstructionSet.RESTART) + "\n\n")
+	gameText.append_text(game_data_processor.process_action(InstructionSet.RESTART))
 	self.grab_focus()
 
 # todo: can we get some tests in here?

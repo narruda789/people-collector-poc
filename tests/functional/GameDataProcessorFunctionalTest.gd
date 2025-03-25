@@ -9,10 +9,12 @@ func after_each():
     TestUtilities.clear_game_data()
     Inventory.clear()
 
-func test_process_restart_instruction_renders_intro():
-    var render = _processor.process_action(InstructionSet.RESTART)
-    assert_string_contains(render, "Welcome to ALYA!")
-    assert_string_contains(render, "It's finally here!")
+func test_process_restart_continue_renders_intro():
+    var restart_render = _processor.process_action(InstructionSet.RESTART)
+    assert_string_contains(restart_render, "Welcome to ALYA!")
+    
+    var continue_render = _processor.process_action(InstructionSet.CONTINUE)
+    assert_string_contains(continue_render, "Today's the day Alya sets off")
 
 func test_process_help_instruction():
     var render = _processor.process_action(InstructionSet.HELP)
