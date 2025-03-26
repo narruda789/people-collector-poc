@@ -1,6 +1,6 @@
 {
 	"initial area" : "my room",
-	"game intro" : "[u]Welcome to ALYA![/u]\n\nYou are Alya, a girl about to embark on a journey for <insert plot here> reasons. In your travels, you'll meet people who might decide to follow you. Everyone has different strengths, and they won't always get along. It will be your job to decide who is the best fit for your party!\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nType 'help' to see a list of available commands.\n\nIf you get stuck, look out for highlighted [u]key terms[/u] and try interacting with them!",
+	"game intro" : "[u]Welcome to ALYA![/u]\n\nYou are Alya, a girl about to embark on a journey for <insert plot here> reasons. In your travels, you'll meet people who might decide to follow you. Everyone has different strengths, and they won't always get along. It will be your job to decide who is the best fit for your party!\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nType 'help' to see a list of available commands.\n\nIf you get stuck, look out for highlighted [u]key terms[/u] and try interacting with them!\n\n...\n\n (!) HINT: Type 'continue' to start the game!",
 	"maps" : {
 		"home" : {
 			"name" : "Home",
