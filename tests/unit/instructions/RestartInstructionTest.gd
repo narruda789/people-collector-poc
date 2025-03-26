@@ -3,8 +3,8 @@ extends GutTest
 var _instruction = null
 
 func before_each():
+    GameData._area_data_file_path = "res://tests/resources/mockGameAreas.json"
     _instruction = RestartInstruction.new()
-    _instruction._game_data_path = "res://tests/resources/mockGameAreas.json"
 
 func test_restart_instruction_resets_game_data():
     GameData.areas = "some game data"
