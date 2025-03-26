@@ -15,6 +15,6 @@ func _execute() -> String:
 			for area in map_areas:
 				map += "\n  %s" % game_data[area].name
 				if game_data[area] == game_data[current_area]:
-					map += " (Alya is here!)"
+					map += " (You are here!)"
 			return map
 	return "???:\n (!) No map available!"

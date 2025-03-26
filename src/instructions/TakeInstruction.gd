@@ -19,5 +19,5 @@ func _execute() -> String:
 		Inventory.add(Item.new(_item, item_display_name))
 
 		game_data[current_area].poi[current_poi].items.erase(_item)
-		return "Alya picks up the %s." % item_display_name
+		return "You pick up the %s." % item_display_name
 	return "Can't pick that up."
