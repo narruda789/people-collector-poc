@@ -55,15 +55,15 @@ func test_shows_party_stats():
 func _stat_bar_for_value(value):
     match value:
         0:
-            return "[lb]-----[rb]"
+            return "|-----|"
         1:
-            return "[lb]█----[rb]"
+            return "|█----|"
         2:
-            return "[lb]██---[rb]"
+            return "|██---|"
         3:
-            return "[lb]███--[rb]"
+            return "|███--|"
         4:
-            return "[lb]████-[rb]"
+            return "|████-|"
         5:
-            return "[lb]█████[rb]"
+            return "|█████|"
     assert(false, "Invalid party stat value")
