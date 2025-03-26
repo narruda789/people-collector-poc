@@ -1,12 +1,12 @@
 class_name StatsInstruction extends Instruction
 
 var _stat_bar = {
-	0: "[lb] | | | | [rb]",
-	1: "[lb]x| | | | [rb]",
-	2: "[lb]x|x| | | [rb]",
-	3: "[lb]x|x|x| | [rb]",
-	4: "[lb]x|x|x|x| [rb]",
-	5: "[lb]x|x|x|x|x[rb]"
+	0: "[lb]-----[rb]",
+	1: "[lb]█----[rb]",
+	2: "[lb]██---[rb]",
+	3: "[lb]███--[rb]",
+	4: "[lb]████-[rb]",
+	5: "[lb]█████[rb]"
 }
 
 func _init():
