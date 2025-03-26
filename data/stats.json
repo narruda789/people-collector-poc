@@ -1,0 +1,8 @@
+{
+    "party" : {
+        "defense" : 1,
+        "resources" : 1,
+        "charm" : 1,
+        "morale" : 3
+    }
+}
