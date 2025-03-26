@@ -1,6 +1,6 @@
 {
 	"initial area" : "my room",
-	"game intro" : "[u]Welcome to ALYA![/u]\n\nYou are Alya, a girl about to embark on a journey for <insert plot here> reasons. In your travels, you'll meet people you can recruit to your party. Everyone has different strengths. It will be your job to decide who is the best fit for your party!\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nType 'help' to see a list of available commands.\n\nIf you get stuck, look out for highlighted [u]key terms[/u] and try interacting with them!",
+	"game intro" : "[u]Welcome to ALYA![/u]\n\nYou are Alya, a girl about to embark on a journey for <insert plot here> reasons. In your travels, you'll meet people who might decide to follow you. Everyone has different strengths, and they won't always get along. It will be your job to decide who is the best fit for your party!\n\nThis is a text-based adventure. To play, type a command into the console and hit enter.\n\nType 'help' to see a list of available commands.\n\nIf you get stuck, look out for highlighted [u]key terms[/u] and try interacting with them!",
 	"maps" : {
 		"home" : {
 			"name" : "Home",
@@ -27,6 +27,9 @@
 				"items" : {
 					"stitch-o-matic" : {
 						"displayName" : "Stitch-o-Matic",
+						"modifiers" : {
+							"resources" : 1
+						},
 						"description" : "Henry's latest invention: a clockwork gadget that can mend small tears in fabric. Handy!",
 						"beforePickup" : "There's something enclosed with Henry's latest letter, which reads: \"I hope you like my latest invention. I call it... the [u]Stitch-o-Matic[/u]! Just wind it up and let it rip! ...That is, [i]fix[/i] a rip. (It goes pretty fast, so be careful!)\""
 					},

@@ -1,5 +1,7 @@
 class_name InstructionSet
 
+# todo: refactor these into Instruction.gd
+#       so can refer to them as Instruction.<WHATEV>
 const NOT_FOUND = "not_found"
 
 const HELP = "help"

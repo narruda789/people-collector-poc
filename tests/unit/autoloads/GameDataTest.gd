@@ -15,3 +15,19 @@ func test_initialize_party_stats():
     assert_eq(GameData.stats["party"].resources, 1)
     assert_eq(GameData.stats["party"].charm, 1)
     assert_eq(GameData.stats["party"].morale, 3)
+
+func test_update_party_stat_can_add():
+    GameData.update_party_stat(StatBlock.DEFENSE, 1)
+    assert_eq(GameData.stats["party"][StatBlock.DEFENSE], 2)
+
+func test_update_party_stat_can_subtract():
+    GameData.update_party_stat(StatBlock.RESOURCES, -1)
+    assert_eq(GameData.stats["party"][StatBlock.RESOURCES], 0)
+
+func test_cannot_update_below_0():
+    GameData.update_party_stat(StatBlock.CHARM, -1000)
+    assert_eq(GameData.stats["party"][StatBlock.CHARM], 0)
+
+func test_cannot_update_above_5():
+    GameData.update_party_stat(StatBlock.MORALE, 1000)
+    assert_eq(GameData.stats["party"][StatBlock.MORALE], 5)

@@ -34,19 +34,19 @@ func test_process_stats_instruction():
     var render = _processor.process_action(InstructionSet.STATS)
     assert_string_contains(render, "PARTY STATS")
 
-func test_examine_desk_take_letter_view_inventory_restart():
+func test_examine_desk_take_stitch_o_matic_view_inventory_restart():
     _restart_and_continue()
 
     var examine_render = _processor.process_action(InstructionSet.EXAMINE, "desk")
     assert_string_contains(examine_render, "A stack of letters, all from Henry")
 
-    var take_render = _processor.process_action(InstructionSet.TAKE, "letter")
-    assert_eq(take_render, "You pick up the Letter.")
+    var take_render = _processor.process_action(InstructionSet.TAKE, "stitch-o-matic")
+    assert_eq(take_render, "You pick up the Stitch-o-Matic.")
 
     var inventory_render = _processor.process_action(InstructionSet.INVENTORY)
-    assert_string_contains(inventory_render, "Letter")
+    assert_string_contains(inventory_render, "Stitch-o-Matic (+1 RESOURCES)")
 
-    var take_render_already_took = _processor.process_action(InstructionSet.TAKE, "letter")
+    var take_render_already_took = _processor.process_action(InstructionSet.TAKE, "stitch-o-matic")
     assert_eq(take_render_already_took, "Can't pick that up.")
 
     _restart_and_continue()
