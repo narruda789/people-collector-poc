@@ -26,9 +26,10 @@ Some commands can be executed with or without an optional preposition. This is i
 HELP:
   examine <target>     | Get more information about a target
   take <item>          | Pick up an item
+  [g]o (to) <location> | Go to a location on the map
   [i]nventory          | See all the items you are carrying
   [m]ap                | View a map of the area
-  [g]o (to) <location> | Go to a location on the map
+  [s]tats              | View your party stats
                        |
   [c]ontinue           | Advance text when you see '...'
   restart              | Restart game from the beginning 
