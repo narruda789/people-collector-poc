@@ -4,9 +4,9 @@ func before_all():
     GameData.initialize()
 
 func test_initialize_area_data():
-    assert_eq(GameData.areas["alya's room"].map, "alya's house")
-    assert_eq(GameData.current_area, "alya's room")
-    assert_eq(GameData.current_map, "alya's house")
+    assert_eq(GameData.areas["my room"].map, "home")
+    assert_eq(GameData.current_area, "my room")
+    assert_eq(GameData.current_map, "home")
     assert_eq(GameData.current_poi, null)
     assert_eq(GameData.next_text, [])
 

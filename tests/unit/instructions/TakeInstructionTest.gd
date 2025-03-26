@@ -40,7 +40,7 @@ func before_each():
 
 func test_take_spoon():
     var instruction = TakeInstruction.new("spoon")
-    assert_eq(instruction.execute(), "Alya picks up the Spoon.")
+    assert_eq(instruction.execute(), "You pick up the Spoon.")
 
 func test_take_spoon_when_item_not_in_current_poi():
     GameData.current_poi = "locker"

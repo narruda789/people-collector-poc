@@ -11,22 +11,22 @@ The proof of concept is live on [arrudabaga.com](https://arrudabaga.com/). Try i
 ### [~ Play Alya! ~](https://arrudabaga.com/people-collector/alya.html)
 
 ### Instructions
-You control Alya, a teenage girl in a fantasy/steampunk world. Use text commands to navigate the game.
+You play as Alya, a teenage girl in a fantasy/steampunk world. Use text commands to navigate the game.
 
 To execute a command, type it into the prompt and hit enter.
 
 Some commands require a parameter, which can be one or more words specifying the target of the command. This is indicated by `<` `>` angle brackets in the list below and in the in-game `help` menu. For example, to examine a pickle jar, type `examine pickle jar`.
 
-Some commands can be executed by typing the first letter of the command word. This is indicated by `[` `]` square brackets. For example, to view Alya's inventory, you can type either the full word `inventory` *or* simply the letter `i`.
+Some commands can be executed by typing the first letter of the command word. This is indicated by `[` `]` square brackets. For example, to view your inventory, you can type either the full word `inventory` *or* simply the letter `i`.
 
-Some commands can be executed with or without an optional preposition. This is indicated by `(` `)` parentheses. For example, to go to Alya's room, you can type `go alya's room` or `go to alya's room`.
+Some commands can be executed with or without an optional preposition. This is indicated by `(` `)` parentheses. For example, to go to your room, you can type `go my room` or `go to my room`.
 
 **Instruction Reference (viewable in-game by typing `help`):**
 ```
 HELP:
   examine <target>     | Get more information about a target
   take <item>          | Pick up an item
-  [i]nventory          | See all the items Alya is carrying
+  [i]nventory          | See all the items you are carrying
   [m]ap                | View a map of the area
   [g]o (to) <location> | Go to a location on the map
                        |
@@ -38,7 +38,7 @@ HELP:
 ### (Extremely) Limited Language Model
 Since this is just a proof of concept, I'm trying **not** to distract myself by perfecting the language-processing element of this game. Sophisticated text-based games often recognize commands and items by many different names, but this is not the case here.
 
-In *Alya*, there is always **just one thing** a given location or object can be called. Make sure to pay close attention to the syntax in the object's description. For example, to examine the doll house in Alya's room, you *must* include the space between the two words, as in `examine doll house`. The game will not recognize `examine dollhouse` or any other variation.
+In *Alya*, there is always **just one thing** a given location or object can be called. Make sure to pay close attention to the syntax in the object's description. For example, to examine the doll house in your room, you *must* include the space between the two words, as in `examine doll house`. The game will not recognize `examine dollhouse` or any other variation.
 
 The name I choose for a given object is usually going to be its **simplest** form, omitting any unnecessary adjectives. If `examine writing desk` doesn't work, try simply `examine desk`.
 

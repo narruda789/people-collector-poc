@@ -64,7 +64,7 @@ func test_map_shows_current_location():
     var instruction = MapInstruction.new()
     var map = instruction.execute()
     assert_string_contains(map, "  Library")
-    assert_string_contains(map, "  Stadium (Alya is here!")
+    assert_string_contains(map, "  Stadium (You are here!")
     assert_string_contains(map, "  Frita Batidos")
 
 func test_no_map_available():
