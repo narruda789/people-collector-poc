@@ -21,6 +21,8 @@ func _execute() -> String:
     stats_display += "\n"
     stats_display += "\nMORALE:"
     stats_display += "\n  %s MORALE    : Enjoy better odds of success overall" % _stat_bar_for("morale")
+    stats_display += "\n"
+    stats_display += "\nParty members you recruit will bring different skills to your party."
 
     return stats_display
 
