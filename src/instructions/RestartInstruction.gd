@@ -1,9 +1,7 @@
 class_name RestartInstruction extends Instruction
 
-var _game_data_path = "res://data/alya.json"
-
 func _execute() -> String:
-	GameData.initialize_from_json(_game_data_path)
+	GameData.initialize()
 	Inventory.clear()
 
 	var message = ""
