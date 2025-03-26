@@ -7,4 +7,6 @@ static func clear_game_data():
     GameData.current_poi = null
     GameData.next_text = []
 
-    GameData.stats = null
+    GameData.stats = {
+	    "party" : StatBlock.new(0, 0, 0, 0).get_stats()
+    }

@@ -12,11 +12,21 @@ var current_poi = null
 var next_text = []
 
 # STATS
-var stats = null
+var stats = {
+	"party" : StatBlock.new(0, 0, 0, 0).get_stats()
+}
 
 func initialize():
 	_initialize_areas()
 	_initialize_stats()
+
+# todo: abstract out stat manipulation?
+func update_party_stat(stat, value_to_add):
+	stats["party"][stat] += value_to_add
+	if stats["party"][stat] > 5:
+		stats["party"][stat] = 5
+	elif stats["party"][stat] < 0:
+		stats["party"][stat] = 0
 
 func _initialize_areas():
 	areas = Utilities.load_json_data_as_dictionary(_area_data_file_path)
