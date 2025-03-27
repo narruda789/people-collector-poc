@@ -45,4 +45,6 @@ func _set_target_and_return_instruction(text, first_word_break, instruction):
 	if _target.substr(0, preposition_break) == "to":
 		_target = _target.substr(3, -1).strip_edges()
 
+	_target = _target.replace("é", "e")
+
 	return instruction

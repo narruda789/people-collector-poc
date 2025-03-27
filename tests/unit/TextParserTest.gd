@@ -162,6 +162,14 @@ func test_talk_is_parsed_correctly():
         {
             "command" : "talk togepi",
             "expected_target" : "togepi"
+        },
+        {
+            "command" : "talk Élodie",
+            "expected_target" : "elodie"
+        },
+        {
+            "command" : "talk to élodie",
+            "expected_target" : "elodie"
         }
     ]
     for input_option in input:
