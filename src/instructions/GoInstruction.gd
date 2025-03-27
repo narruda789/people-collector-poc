@@ -16,3 +16,6 @@ func _execute() -> String:
         return GameData.areas[_new_area]["intro"]
         
     return "Can't go there."
+
+func _set_auto_instruction():
+    pass

@@ -8,7 +8,10 @@ func test_initialize_area_data():
     assert_eq(GameData.current_area, "my room")
     assert_eq(GameData.current_map, "home")
     assert_eq(GameData.current_poi, null)
+
+func test_initialize_internal_data():
     assert_eq(GameData.next_text, [])
+    assert_eq(GameData.auto_instruction, "")
 
 func test_initialize_party_stats():
     assert_eq(GameData.stats["party"].defense, 1)

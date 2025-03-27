@@ -9,12 +9,16 @@ var areas = null
 var current_map = null
 var current_area = null
 var current_poi = null
-var next_text = []
 
 # STATS
 var stats = {
 	"party" : StatBlock.new(0, 0, 0, 0).get_stats()
 }
+
+# INTERNAL
+var next_text = []
+# todo: make auto_instruction an array/queue
+var auto_instruction = null
 
 func initialize():
 	_initialize_areas()

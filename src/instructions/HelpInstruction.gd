@@ -19,3 +19,6 @@ func _execute() -> String:
     helpText += "\n  () = optional preposition"
 
     return helpText
+
+func _set_auto_instruction():
+    pass

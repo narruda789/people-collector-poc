@@ -49,17 +49,17 @@ func before_each():
 
 func test_take_spoon():
     var instruction = TakeInstruction.new("spoon")
-    assert_eq(instruction.execute(), "You pick up the Spoon.")
+    assert_eq(instruction.execute(), "Got Spoon.")
 
 func test_take_spoon_when_item_not_in_current_poi():
     GameData.current_poi = "locker"
     var instruction = TakeInstruction.new("spoon")
-    assert_eq(instruction.execute(), "Can't pick that up.")
+    assert_eq(instruction.execute(), "Can't take that.")
 
 func test_take_spoon_when_current_poi_null():
     GameData.current_poi = null
     var instruction = TakeInstruction.new("spoon")
-    assert_eq(instruction.execute(), "Can't pick that up.")
+    assert_eq(instruction.execute(), "Can't take that.")
 
 func test_take_water_bottle_adds_to_resources_stat():
     var instruction = TakeInstruction.new("water bottle")

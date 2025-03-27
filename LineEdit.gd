@@ -20,14 +20,10 @@ func _on_text_submitted(new_text):
 	# clear the text of the text area.
 	self.set_text('')
 
-	# parse text
-	var instruction = text_parser.parse(new_text)
-
-	# send to game data
+	# echo user command
 	var output_text = ''
 	output_text += " > " + new_text + "\n\n"
-	output_text += game_data_processor.process_action(instruction, text_parser.get_target())
-	output_text += "\n\n"
 
-	# pass output to the game text area
+	output_text += game_data_processor.process_command_text(new_text)
+
 	gameText.append_text(output_text)

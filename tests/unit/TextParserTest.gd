@@ -138,3 +138,32 @@ func test_stats_is_parsed_correctly():
     ]
     for input_option in input:
         assert_eq(_text_parser.parse(input_option), InstructionSet.STATS)
+
+func test_talk_is_parsed_correctly():
+    assert_eq(_text_parser.parse("talk"), InstructionSet.NOT_FOUND)
+
+    var input = [
+        {
+            "command" : "talk goblin",
+            "expected_target" : "goblin"
+        },
+        {
+            "command" : "tAlK sEnTiEnT mUsHrOoM",
+            "expected_target" : "sentient mushroom"
+        },
+        {
+            "command" : "talk to sexy chupacabra",
+            "expected_target" : "sexy chupacabra"
+        },
+        {
+            "command" : "talk tomato",
+            "expected_target" : "tomato" 
+        },
+        {
+            "command" : "talk togepi",
+            "expected_target" : "togepi"
+        }
+    ]
+    for input_option in input:
+        assert_eq(_text_parser.parse(input_option.command), InstructionSet.TALK)
+        assert_eq(_text_parser.get_target(), input_option.expected_target)
