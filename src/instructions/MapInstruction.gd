@@ -18,3 +18,6 @@ func _execute() -> String:
 					map += " (You are here!)"
 			return map
 	return "???:\n (!) No map available!"
+
+func _set_auto_instruction():
+	pass

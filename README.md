@@ -26,6 +26,7 @@ Some commands can be executed with or without an optional preposition. This is i
 HELP:
   examine <target>     | Get more information about a target
   take <item>          | Pick up an item
+  talk (to) <person>   | Talk to a person
   [g]o (to) <location> | Go to a location on the map
   [i]nventory          | See all the items you are carrying
   [m]ap                | View a map of the area

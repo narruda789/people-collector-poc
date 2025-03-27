@@ -28,5 +28,8 @@ func _execute() -> String:
         Inventory.add(Item.new(_item, item_display_name, stat_block))
 
         game_data[current_area].poi[current_poi].items.erase(_item)
-        return "You pick up the %s." % item_display_name
-    return "Can't pick that up."
+        return "Got %s." % item_display_name
+    return "Can't take that."
+
+func _set_auto_instruction():
+    pass
