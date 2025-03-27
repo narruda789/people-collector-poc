@@ -45,7 +45,7 @@
 	"downstairs" : {
 		"name" : "Downstairs",
 		"map" : "home",
-		"intro" : "You go downstairs. In the front hall, you're met with some wonderful aromas: freshly brewed coffee, sizzling pork, and baked cinnamon apples.\n\nYou follow your nose to the dining room, expecting to find your father, as usual.\n\nInstead, you're surprised and delighted to see your big sister, [u]Élodie[/u]! She's supposed to be off in Scary Big Forest, keeping the monsters at bay. What is she doing here?\n\n (!) HINT: Use 'talk (to) elodie' to speak with your sister!",
+		"intro" : "You go downstairs. In the front hall, you're met with some wonderful aromas: freshly brewed coffee, sizzling pork, and baked cinnamon apples.\n\nYou follow your nose to the dining room, expecting to find your father, as usual.\n\nInstead, you're surprised and delighted to see your big sister, [u]Élodie[/u]! She's supposed to be off in Scary Big Forest, fighting the monsters. What is she doing here?\n\n (!) HINT: Use 'talk (to) elodie' to speak with your sister!",
 		"people" : {
 			"elodie" : {
 				"name" : "Élodie",

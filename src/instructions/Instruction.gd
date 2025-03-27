@@ -1,7 +1,6 @@
 class_name Instruction
 
 var _can_execute_before_continue = true
-var _target = null
 
 func execute() -> String:
     if !_can_execute_before_continue and GameData.next_text:
