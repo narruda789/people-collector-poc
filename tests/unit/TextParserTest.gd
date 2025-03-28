@@ -6,27 +6,27 @@ func before_each():
     _text_parser = TextParser.new()
 
 func test_random_text_produces_error():
-    var entered_text = {
-        "": InstructionSet.NOT_FOUND,
-        " ": InstructionSet.NOT_FOUND,
-        " take": InstructionSet.NOT_FOUND,
-        "wibble": InstructionSet.NOT_FOUND,
-        "notrhitng": InstructionSet.NOT_FOUND,
-        "wewst": InstructionSet.NOT_FOUND,
-        "southgsd": InstructionSet.NOT_FOUND,
-        "estesin": InstructionSet.NOT_FOUND,
-        "<script>": InstructionSet.NOT_FOUND,
-    }
+    var entered_text = [
+        "",
+        " ",
+        " take",
+        "wibble",
+        "notrhitng",
+        "wewst",
+        "southgsd",
+        "estesin",
+        "<script>",
+    ]
     for text in entered_text:
-        assert_eq(_text_parser.parse(text), entered_text[text])
+        assert_typeof(_text_parser.parse_user_command(text), typeof(NotFoundInstruction))
 
 func test_help_is_parsed_correctly():
-    assert_eq(_text_parser.parse('help'), InstructionSet.HELP)
-    assert_eq(_text_parser.parse('hElP'), InstructionSet.HELP)
+    assert_typeof(_text_parser.parse_user_command('help'), typeof(HelpInstruction))
+    assert_typeof(_text_parser.parse_user_command('hElP'), typeof(HelpInstruction))
 
 func test_restart_is_parsed_correctly():
-    assert_eq(_text_parser.parse('restart'), InstructionSet.RESTART)
-    assert_eq(_text_parser.parse('rEsTaRt'), InstructionSet.RESTART)
+    assert_typeof(_text_parser.parse_user_command('restart'), typeof(RestartInstruction.new()))
+    assert_typeof(_text_parser.parse_user_command('rEsTaRt'), typeof(RestartInstruction.new()))
 
 func test_inventory_is_parsed_correctly():
     var input = [
@@ -36,31 +36,30 @@ func test_inventory_is_parsed_correctly():
         "I"
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option), InstructionSet.INVENTORY)
+        assert_typeof(_text_parser.parse_user_command(input_option), typeof(InventoryInstruction))
 
-func test_object_commands_are_parsed_correctly():
-    assert_eq(_text_parser.parse("take"), InstructionSet.NOT_FOUND)
-    assert_eq(_text_parser.parse("takebucket"), InstructionSet.NOT_FOUND)
-    assert_eq(_text_parser.parse("take-bucket"), InstructionSet.NOT_FOUND)
+func test_take_is_parsed_correctly():
+    assert_typeof(_text_parser.parse_user_command("take"), typeof(NotFoundInstruction))
+    assert_typeof(_text_parser.parse_user_command("takebucket"), typeof(NotFoundInstruction))
+    assert_typeof(_text_parser.parse_user_command("take-bucket"), typeof(NotFoundInstruction))
 
-    var tests = {
-        "take bucket": {
-            'instruction': InstructionSet.TAKE,
-            'object': 'bucket',
+    var input = [
+        {
+            "command": "take bucket",
+            "expected_target": "bucket"
         },
-        "tAkE bUcKeT": {
-            'instruction': InstructionSet.TAKE,
-            'object': 'bucket',
-        },
-    }
-    for test in tests:
-        var instruction = _text_parser.parse(test)
-        assert_eq(instruction, tests[test]['instruction'])
-        var object = _text_parser.get_target()
-        assert_eq(object , tests[test]['object'])
+        {
+            "command": "tAkE bUcKeT",
+            "expected_target": "bucket"
+        }
+    ]
+    for input_option in input:
+        var instruction = _text_parser.parse_user_command(input_option.command)
+        assert_typeof(instruction, typeof(TakeInstruction))
+        assert_eq(instruction._item, input_option["expected_target"])
 
 func test_examine_is_parsed_correctly():
-    assert_eq(_text_parser.parse("examine"), InstructionSet.NOT_FOUND)
+    assert_typeof(_text_parser.parse_user_command("examine"), typeof(NotFoundInstruction))
     
     var input = [
         {
@@ -77,8 +76,9 @@ func test_examine_is_parsed_correctly():
         }
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option.command), InstructionSet.EXAMINE)
-        assert_eq(_text_parser.get_target(), input_option.expected_target)
+        var instruction = _text_parser.parse_user_command(input_option.command)
+        assert_typeof(instruction, typeof(ExamineInstruction))
+        assert_eq(instruction._poi, input_option.expected_target)
 
 func test_map_is_parsed_correctly():
     var input = [
@@ -88,10 +88,10 @@ func test_map_is_parsed_correctly():
         "M"
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option), InstructionSet.MAP)
+        assert_typeof(_text_parser.parse_user_command(input_option), typeof(MapInstruction))
 
 func test_go_is_parsed_correctly():
-    assert_eq(_text_parser.parse("go"), InstructionSet.NOT_FOUND)
+    assert_typeof(_text_parser.parse_user_command("go"), typeof(NotFoundInstruction))
 
     var input = [
         {
@@ -116,8 +116,9 @@ func test_go_is_parsed_correctly():
         }
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option.command), InstructionSet.GO)
-        assert_eq(_text_parser.get_target(), input_option.expected_target)
+        var instruction = _text_parser.parse_user_command(input_option.command)
+        assert_typeof(instruction, typeof(GoInstruction))
+        assert_eq(instruction._new_area, input_option.expected_target)
 
 func test_continue_is_parsed_correctly():
     var input = [
@@ -127,7 +128,7 @@ func test_continue_is_parsed_correctly():
         "C"
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option), InstructionSet.CONTINUE)
+        assert_typeof(_text_parser.parse_user_command(input_option), typeof(ContinueInstruction))
 
 func test_stats_is_parsed_correctly():
     var input = [
@@ -137,10 +138,14 @@ func test_stats_is_parsed_correctly():
         "S"
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option), InstructionSet.STATS)
+        assert_typeof(_text_parser.parse_user_command(input_option), typeof(StatsInstruction))
 
 func test_talk_is_parsed_correctly():
-    assert_eq(_text_parser.parse("talk"), InstructionSet.NOT_FOUND)
+    GameData.areas = {
+        "test" : ""
+    }
+    GameData.current_area = "test"
+    assert_typeof(_text_parser.parse_user_command("talk"), typeof(NotFoundInstruction))
 
     var input = [
         {
@@ -173,5 +178,6 @@ func test_talk_is_parsed_correctly():
         }
     ]
     for input_option in input:
-        assert_eq(_text_parser.parse(input_option.command), InstructionSet.TALK)
-        assert_eq(_text_parser.get_target(), input_option.expected_target)
+        var instruction = _text_parser.parse_user_command(input_option.command)
+        assert_typeof(instruction, typeof(TalkInstruction))
+        assert_eq(instruction._person, input_option.expected_target)

@@ -20,10 +20,10 @@ sequenceDiagram
   participant TextParser
   participant B as InstructionProcessor
   user->>LineEdit: input command
-  LineEdit->>A: process input
-  A->>TextParser: parse user command
+  LineEdit->>A: process(user_input)
+  A->>TextParser: parse_user_command(user_input)
   TextParser-->>A: UserInstruction
-  A->>B: process UserInstruction
+  A->>B: process(UserInstruction)
   B->>UserInstruction: execute()
   UserInstruction->>GameData: set auto command text
   UserInstruction-->>B: UserInstruction output
@@ -40,7 +40,8 @@ sequenceDiagram
     AutoInstruction-->>B: UserInstruction output
   end
   AutoInstructionQueue-->>B: AutoInstruction output
-  B-->>LineEdit: all instruction output
+  B-->>A: all instruction output
+  A-->>LineEdit: all instruction output
   LineEdit-->>user: display instruction output
 ```
 

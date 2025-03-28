@@ -1,50 +1,44 @@
 class_name TextParser
 
-var _target = null
-
-# Parse a given input string into an instruction.
-func parse(text):
-	text = text.to_lower()
-	var first_word_break = text.find(" ")
-	var command_word = text.substr(0, first_word_break)
+func parse_user_command(user_input) -> Instruction:
+	user_input = user_input.to_lower()
+	var first_word_break = user_input.find(" ")
+	var command_word = user_input.substr(0, first_word_break)
 
 	match command_word:
 		"examine":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.EXAMINE)
+			return ExamineInstruction.new(_get_target(user_input, first_word_break))
 		"take":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.TAKE)
+			return TakeInstruction.new(_get_target(user_input, first_word_break))
 		"talk":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.TALK)
+			return TalkInstruction.new(_get_target(user_input, first_word_break))
 		"go", "g":
-			return _set_target_and_return_instruction(text, first_word_break, InstructionSet.GO)
+			return GoInstruction.new(_get_target(user_input, first_word_break))
 		"inventory", "i":
-			return InstructionSet.INVENTORY
+			return InventoryInstruction.new()
 		"map", "m":
-			return InstructionSet.MAP
+			return MapInstruction.new()
 		"stats", "s":
-			return InstructionSet.STATS
+			return StatsInstruction.new()
 		"continue", "c":
-			return InstructionSet.CONTINUE
+			return ContinueInstruction.new()
 		"restart":
-			return InstructionSet.RESTART
+			return RestartInstruction.new()
 		"help":
-			return InstructionSet.HELP
+			return HelpInstruction.new()
 
-	return InstructionSet.NOT_FOUND
+	return NotFoundInstruction.new()
 
-func get_target():
-	return _target
-
-func _set_target_and_return_instruction(text, first_word_break, instruction):
+func _get_target(text, first_word_break):
 	if first_word_break == -1:
-		return InstructionSet.NOT_FOUND
+		return NotFoundInstruction.new()
 		
-	_target = text.substr(first_word_break, -1).strip_edges()
+	var target = text.substr(first_word_break, -1).strip_edges()
 
-	var preposition_break = _target.find(" ")
-	if _target.substr(0, preposition_break) == "to":
-		_target = _target.substr(3, -1).strip_edges()
+	var preposition_break = target.find(" ")
+	if target.substr(0, preposition_break) == "to":
+		target = target.substr(3, -1).strip_edges()
 
-	_target = _target.replace("é", "e")
+	target = target.replace("é", "e")
 
-	return instruction
+	return target

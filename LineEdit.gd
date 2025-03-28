@@ -9,7 +9,8 @@ func _ready():
 	gameText = get_parent().get_parent().get_node("GameText")
 	text_parser = TextParser.new()
 	input_handler = InputHandler.new()
-	gameText.append_text(input_handler.process_action(InstructionSet.RESTART))
+	# todo: there's probably a better way to do this?
+	gameText.append_text(input_handler.process("restart"))
 	self.grab_focus()
 
 # todo: can we get some tests in here?
@@ -24,6 +25,8 @@ func _on_text_submitted(new_text):
 	var output_text = ''
 	output_text += " > " + new_text + "\n\n"
 
-	output_text += input_handler.process_command_text(new_text)
+	output_text += input_handler.process(new_text)
+
+	output_text += "\n\n"
 
 	gameText.append_text(output_text)
