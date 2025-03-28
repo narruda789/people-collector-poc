@@ -9,4 +9,5 @@ func _init():
 
 func process(user_input: String) -> String:
 	var user_instruction = _text_parser.parse_user_command(user_input)
-	return _instruction_processor.process(user_instruction)
+
+	return _instruction_processor.process(user_instruction)[0] + "\n\n"

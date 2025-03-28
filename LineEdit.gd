@@ -27,6 +27,4 @@ func _on_text_submitted(new_text):
 
 	output_text += input_handler.process(new_text)
 
-	output_text += "\n\n"
-
 	gameText.append_text(output_text)

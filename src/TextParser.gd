@@ -1,5 +1,8 @@
 class_name TextParser
 
+func parse_auto_command(json) -> Instruction:
+	return NotFoundInstruction.new()
+
 func parse_user_command(user_input) -> Instruction:
 	user_input = user_input.to_lower()
 	var first_word_break = user_input.find(" ")
