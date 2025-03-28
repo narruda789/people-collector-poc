@@ -20,5 +20,5 @@ func _execute() -> String:
 
     return helpText
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass

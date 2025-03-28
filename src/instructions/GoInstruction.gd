@@ -17,5 +17,5 @@ func _execute() -> String:
         
     return "Can't go there."
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass

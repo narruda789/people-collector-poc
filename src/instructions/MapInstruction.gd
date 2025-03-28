@@ -19,5 +19,5 @@ func _execute() -> String:
 			return map
 	return "???:\n (!) No map available!"
 
-func _set_auto_instruction():
+func _append_auto_command():
 	pass

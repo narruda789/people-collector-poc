@@ -11,4 +11,4 @@ static func clear_game_data():
     }
     
     GameData.next_text = []
-    GameData.auto_instruction = ""
+    GameData.auto_commands = []

@@ -16,6 +16,7 @@ func before_each():
         }
     }
     GameData.current_area = "library"
+    GameData.auto_commands = []
 
 func test_talk_to_librarian():
     var instruction = TalkInstruction.new("librarian")
@@ -37,7 +38,7 @@ func test_no_people_in_area():
     var instruction = TalkInstruction.new("anybody")
     assert_eq(instruction.execute(), "Can't talk to them.")
 
-func test_store_auto_instruction_in_game_data():
+func test_store_auto_command_in_game_data():
     var instruction = TalkInstruction.new("librarian")
     instruction.execute()
-    assert_eq(GameData.auto_instruction, "instruction to run automatically")
+    assert_eq(GameData.auto_commands, ["instruction to run automatically"])

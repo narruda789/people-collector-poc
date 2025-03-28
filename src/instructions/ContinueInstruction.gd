@@ -5,5 +5,5 @@ func _execute() -> String:
         return "Nothing more to say."
     return GameData.next_text.pop_front()
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass

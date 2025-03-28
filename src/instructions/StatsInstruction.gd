@@ -27,5 +27,5 @@ func _execute() -> String:
 func _stat_bar_for(stat_name):
     return _stat_bar[int(GameData.stats["party"][stat_name])]
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass

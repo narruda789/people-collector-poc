@@ -6,12 +6,12 @@ func execute() -> String:
     if !_can_execute_before_continue and GameData.next_text:
         return "Must continue reading first."
 
-    _set_auto_instruction()
+    _append_auto_command()
     return _execute()
 
 func _execute() -> String:
     assert(false, "Instruction._execute() is an abstract function. Please extend and implement.")
     return ""
 
-func _set_auto_instruction():
-    assert(false, "Instruction._set_auto_instruction() is an abstract function. Please extend and implement.")
+func _append_auto_command():
+    assert(false, "Instruction._append_auto_command() is an abstract function. Please extend and implement.")

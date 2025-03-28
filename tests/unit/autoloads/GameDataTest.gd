@@ -11,7 +11,7 @@ func test_initialize_area_data():
 
 func test_initialize_internal_data():
     assert_eq(GameData.next_text, [])
-    assert_eq(GameData.auto_instruction, "")
+    assert_eq(GameData.auto_commands, [])
 
 func test_initialize_party_stats():
     assert_eq(GameData.stats["party"].defense, 1)

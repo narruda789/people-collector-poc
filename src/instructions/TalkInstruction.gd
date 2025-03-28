@@ -16,10 +16,10 @@ func _execute():
         return person.name + " says nothing."
     return "Can't talk to them."
 
-func _set_auto_instruction():
+func _append_auto_command():
     var person = _get_person()
     if person != null and "on_talk" in person:
-        GameData.auto_instruction = person["on_talk"]
+        GameData.auto_commands.append(person["on_talk"])
 
 func _get_person():
     if "people" in _current_area:

@@ -17,8 +17,7 @@ var stats = {
 
 # INTERNAL
 var next_text = []
-# todo: make auto_instruction an array/queue
-var auto_instruction = null
+var auto_commands = []
 
 func initialize():
 	_initialize_areas()

@@ -31,5 +31,5 @@ func _execute() -> String:
         return "Got %s." % item_display_name
     return "Can't take that."
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass

@@ -6,5 +6,5 @@ func _init():
 func _execute() -> String:
     return Inventory.render()
 
-func _set_auto_instruction():
+func _append_auto_command():
     pass
