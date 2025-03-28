@@ -1,4 +1,4 @@
-class_name GameDataProcessor
+class_name InputHandler
 
 var text_parser = null
 

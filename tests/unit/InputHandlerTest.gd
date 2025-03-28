@@ -1,6 +1,6 @@
 extends GutTest
 
-var _processor = GameDataProcessor.new()
+var _processor = InputHandler.new()
 
 func test_process_action_calls_execute():
 	var instruction_double = InstructionDouble.new()
